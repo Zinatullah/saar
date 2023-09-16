@@ -1,0 +1,45 @@
+<?php
+
+
+echo('vacancy_code');echo $_POST['vacancy_code'];
+echo('<br />');
+echo('tazkira_no');echo $_POST['tazkira_no'];
+echo('<br />');
+echo('name');echo $_POST['name'];
+echo('<br />');
+echo('f_name');echo $_POST['f_name'];
+echo('<br />');
+echo('gf_name');echo $_POST['gf_name'];
+echo('<br />');
+echo('gender');echo $_POST['gender'];
+echo('<br />');
+echo('yob');echo $_POST['yob'];
+echo('<br />');
+echo('mobile_no');echo $_POST['mobile_no'];
+echo('<br />');
+echo('email');echo $_POST['email'];
+echo('<br />');
+echo('permanent_province');echo $_POST['permanent_province'];
+echo('<br />');
+echo('permanent_district');echo $_POST['permanent_district'];
+echo('<br />');
+echo('current_province');echo $_POST['current_province'];
+echo('<br />');
+echo('current_district');echo $_POST['current_district'];
+echo('<br />');
+echo('permanent_province');echo $_POST['permanent_province'];
+echo('<br />');
+echo('grade');echo $_POST['grade'];
+echo('<br />');
+echo('university');echo $_POST['university'];
+echo('<br />');
+echo('faculty');echo $_POST['faculty'];
+echo('<br />');
+echo('department');echo $_POST['department'];
+echo('<br />');
+echo('edu_start_date');echo $_POST['edu_start_date'];
+echo('<br />');
+echo('edu_end_date');echo $_POST['edu_end_date'];
+echo('<br />');
+echo('faculty');echo $_POST['faculty'];
+echo('<br />');
