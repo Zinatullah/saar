@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if (password_verify($pwd, $user_data['pwd']) && $user_data['email'] == $email) {
                     var_dump($user_data['name']);
                     $_SESSION['user_id'] = $user_data['name'];
-                    header("Location: ./backend/backend.php");
+                    header("Location: ./backend/pages/backend.php");
                 } else {
                     echo "<SCRIPT> alert('$message')
                             window.location.replace('./index.php');
