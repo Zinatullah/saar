@@ -4,7 +4,7 @@ include("./../../db/connection.php");
 include("./../../db/functions.php");
 
 $id = $_GET['id'];
-$query = "SELECT * FROM `companies_foreing` where id = $id";
+$query = "SELECT * FROM `contracts` where id = $id";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_row($result);
 
@@ -125,13 +125,21 @@ $data = mysqli_fetch_row($result);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="text-align: center;">
-                    <h1 class="h2">ځانګړی بهرنۍ شرکت</h1>
+                    <h1 class="h2">ځانګړی شرکت</h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
                     <main class="container">
-                        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm" style="background-color: #0c6663;">
+                        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm" style="background-color: #004a43;">
                             <div class="lh-1">
-                                <h1 class="h3 mb-0 text-white mb-4 pt-2 lh-1" style="text-align: center">شرکت : <?php echo $data[1] ?></h1>
+                                <h1 class="h3 mb-0 text-white mb-4 pt-2 lh-1" style="text-align: center">
+                                    <span style="margin-left: 10px">
+                                        <?php echo $data[1] ?> 
+                                    </span>
+                                    <span>:</span>
+                                    <span style="margin-right: 10px">
+                                        <?php echo $data[2] ?>
+                                </h1>
+                                </span>
                                 <div class="row g-3">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -141,68 +149,69 @@ $data = mysqli_fetch_row($result);
                                             <hr>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-3">
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
                                         <span class="form-control">آیډي : <?php echo $data[0] ?></span>
                                     </div>
 
-                                    <div class="col-sm-6 col-md-6 col-lg-3">
-                                        <span class="form-control">د تلیفون نمبر : <?php echo $data[7] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">داخلي شرکت : <?php echo $data[1] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">ايمیل آدرس : <?php echo $data[8] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">بهرنۍ شرکت : <?php echo $data[2] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-3">
-                                        <span class="form-control">د جواز د اعتبار موده : <?php echo $data[10] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">منبع هېواد : <?php echo $data[3] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-3">
-                                        <span class="form-control">جواز نمبر : <?php echo $data[9] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د نفتي توکو نوعیت او انالېز : <?php echo $data[4] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">د جواز کافي : <?php echo $data[12] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د نفتي توکو مقدار : <?php echo $data[5] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">هېواد : <?php echo $data[11] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د بارګیری ځای : <?php echo $data[6] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">رسمي آدرس : <?php echo $data[6] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د انتقال لاره : <?php echo $data[7] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">د شرکت د مالک نوم : <?php echo $data[2] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د ترانسپورت نوعیت : <?php echo $data[8] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">د شرکت د مالک نمبر : <?php echo $data[3] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">بندر : <?php echo $data[9] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">د شرکت د معاون نوم : <?php echo $data[4] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د قرارداد موده : <?php echo $data[10] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">د شرکت د معاون نوم : <?php echo $data[5] ?></span>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د فی ټن قیمت : <?php echo $data[11] ?></span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د قرارداد د پیل نېټه : <?php echo $data[12] ?></span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د بارګیری مهالوېش : <?php echo $data[13] ?></span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                        <span class="form-control">د قرارداد کافي : <?php echo $data[15] ?></span>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-12">
+                                        <span class="form-control">نور جزئیات : <?php echo $data[14] ?></span>
                                     </div>
                                 </div>
 
-                                <div class="row g-3 my-5">
-                                    <div class="col-sm-3 col-md-3">
-                                        <form action="./company_foreing_edit.php" method="POST">
+                                <div class="row g-3 my-3">
+                                    <div class="col-sm-1 col-md-1"></div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <form action="./contract_edit.php" method="POST">
                                             <input type="hidden" name="edits" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-info btn-lg">تغیرول</button>
+                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">تغیرول</button>
                                         </form>
                                     </div>
-                                    <div class="col-sm-3 col-md-3">
-                                        <form action="./companies/suspend_foreign.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">ځنډول</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-sm-3 col-md-3">
-                                        <form action="./companies/block_foreing.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-warning btn-lg">بلاک کول</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-sm-3 col-md-3">
-                                        <form action="./companies/remove_foreign_company.php" method="POST">
+                                    <div class="col-sm-5 col-md-5">
+                                        <form action="./contract_remove.php" method="POST">
                                             <input type="hidden" name="remove" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-danger btn-lg">لمنځه وړل</button>
+                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-warning btn-lg">لمنځه وړل</button>
                                         </form>
                                     </div>
                                 </div>

@@ -3,10 +3,9 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
-$query = "SELECT * FROM `contracts` ";
+$query = "SELECT * FROM `companies_foreing` where block = 1 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
-
 ?>
 
 
@@ -118,7 +117,6 @@ $data = mysqli_fetch_all($result);
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
                 <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
                     <div class="offcanvas-header">
-                        <!-- <h5 class="offcanvas-title" id="sidebarMenuLabel">د افغانستان نفت او ګاز شرکت</h5> -->
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="يغلق"></button>
                     </div>
                     <?php include_once('./../components/sidebard.php') ?>
@@ -127,48 +125,55 @@ $data = mysqli_fetch_all($result);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"> ټول قراردادونه</h1>
+                    <h1 class="h2">بلاک شوی بهرني شرکت</h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
-                    <h3 class="text-center">
-                        ټول ثبت شوي قراردادونه
-                    </h3>
-                    <div class="table-responsive small">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">آیډي</th>
-                                    <th scope="col">داخلي شرکت</th>
-                                    <th scope="col">بهرنۍ شرکت</th>
-                                    <th scope="col">منبع هېواد</th>
-                                    <th scope="col">د قرارداد موده</th>
-                                    <th scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($data as $element) { ?>
-                                    <tr>
-                                        <td><?php echo $element[0] ?></td>
-                                        <td><?php echo $element[1] ?></td>
-                                        <td><?php echo $element[2] ?></td>
-                                        <td><?php echo $element[3] ?></td>
-                                        <td><?php echo $element[10] ?></td>
-                                        <td style="text-align: left;">
-                                            <span>
-                                                <a href="./contract_details.php?id=<?php echo $element[0] ?>">
-                                                    <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
-                                                </a>
-                                                <form action="./contracts/contract_remove.php" method="POST" style="display: inline;">
-                                                    <input type="hidden" name="remove" value="<?php echo $element[0] ?>">
-                                                    <button name="delete" type="submit" class="btn btn-danger btn-sm px-3">لمنځه وړل</button>
-                                                </form>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                    <section class="intro" dir='rtl'>
+                        <div class="mask d-flex align-items-center h-100">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-borderless mb-0">
+                                                    <thead>
+                                                        <tr style="border: 1px solid lightgray">
+                                                            <th style="border: 1px solid lightgray" scope="col">آیډي</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">د شرکت نوم</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">د مالک نوم</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">د معاون نوم</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">هېواد</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">جواز نمبر</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">تلیفون نمبر</th>
+                                                            <th style="border: 1px solid lightgray" scope="col">نور معلومات</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($data as $value) { ?>
+                                                            <tr style="border-bottom: 1px solid lightgray">
+                                                                <td style="border-right: 1px solid lightgray"><?php echo $value[0] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[1] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[2] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[4] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[5] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[11] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[7] ?></td>
+                                                                <td scope="col-2" style="border: 1px solid lightgray">
+                                                                    <a href="./company_foreign_details_block.php?id=<?php echo $value[0]?>">
+                                                                        <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </main>
         </div>

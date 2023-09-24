@@ -125,7 +125,7 @@ $data = mysqli_fetch_row($result);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="text-align: center;">
-                    <h1 class="h2">ځانګړی بهرنۍ شرکت</h1>
+                    <h1 class="h2">ځانګړی بلاک شوی بهرنۍ شرکت</h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
                     <main class="container">
@@ -189,14 +189,14 @@ $data = mysqli_fetch_row($result);
                                     </div>
                                     <div class="col-sm-3 col-md-3">
                                         <form action="./companies/suspend_foreign.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">ځنډول</button>
+                                            <input type="hidden" name="id_unsuspend" value="<?php echo $data[0] ?>">
+                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">ځنډ لیرې کول</button>
                                         </form>
                                     </div>
                                     <div class="col-sm-3 col-md-3">
                                         <form action="./companies/block_foreing.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-warning btn-lg">بلاک کول</button>
+                                            <input type="hidden" name="id_unblock" value="<?php echo $data[0] ?>">
+                                            <button style="width: 100%" name="blocked" type="submit" class="btn btn-warning btn-lg">بلاک لیرې کول</button>
                                         </form>
                                     </div>
                                     <div class="col-sm-3 col-md-3">

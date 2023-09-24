@@ -191,7 +191,7 @@ if (isset($_POST['edit'])) {
                                     <label class="form-label">د مهر نمونه</label>
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" style="width: 150px"><?php echo $data[11] ?></label>
-                                        <input type="file" class="form-control" name='stamp' id="inputGroupFile01">
+                                        <input type="file" class="form-control" name='stamp' value="<?php echo $data[11] ?>" id="inputGroupFile01">
                                     </div>
                                 </div>
                                 <div class="col-sm-8">

@@ -28,19 +28,12 @@ $license_copy = $_FILES['license_copy']['name'];
         echo "<SCRIPT> alert('$message')
         window.location.replace('./../add_foreign_company.php');
             </SCRIPT>";
-        echo $message;
 
     } else {
 
-        echo $license_copy. '<br>';
         $query = "INSERT INTO companies_foreing(name, ceo, ceo_phone, dep, dep_phone, address, phone, email, license, license_date, country, license_copy) VALUES ('$name', '$ceo' , '$ceo_phone', '$dep', '$dep_phone' ,'$address', '$phone', '$email', '$license', '$license_date', '$country', '$license_copy')";
-
-        echo $query;
-
-
         mysqli_query($con, $query);
         $message = 'شرکت ثبت شو';
-        echo $message;
         echo "<SCRIPT> alert('$message')
         window.location.replace('./../add_foreign_company.php');
             </SCRIPT>";

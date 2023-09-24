@@ -61,6 +61,13 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        
+        ::placeholder {
+            color: rgba(0, 0, 0, .30) !important;
+            /* opacity: 1; */
+            /* Firefox */
+        }
+
         .btn-bd-primary {
             --bd-violet-bg: #712cf9;
             --bd-violet-rgb: 122.520718, 44.062154, 249.437846;
@@ -85,6 +92,7 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
     </style>
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
@@ -136,9 +144,6 @@
                                     <input type="number" class="form-control" name="license" style="text-align: right;" placeholder="  د جواز نمبر " required='required'>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control" name="license_expire_date" placeholder="د جواز د اعتبار تاریخ" required='required'>
-                                </div>
-                                <div class="col-sm-4">
                                     <input type="text" class="form-control" name="tax" placeholder="مالیاتي تصفیه" required='required'>
                                 </div>
                                 <div class="col-sm-4">
@@ -152,112 +157,130 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="oil_type" placeholder="د نفتي توکو نوعیت" required='required'>
+                                    <input type="text" class="form-control" name="quantity" placeholder=" د نفتي توکو مقدار په ټن سره" required='required'>
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="quantity" placeholder="د نفتي توکو مقدار" required='required'>
-                                </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <input type="text" class="form-control" name="foreign_country" placeholder="منبع هېواد" required='required'>
                                 </div>
-
+                                <div class="col-sm-4">
+                                    <label for="time" class="form-label">د جواز د اعتبار تاریخ</label>
+                                    <input type="date" class="form-control" name="license_expire_date" placeholder="د جواز د اعتبار تاریخ" required='required'>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="time" class="form-label">د تورید موده</label>
+                                    <input type="text" class="form-control" name="time" name='time' placeholder="" required='required'>
+                                </div>
                                 <div class="col-sm-4">
                                     <label for="stamp" class="form-label">نمونه مهر شرکت</label>
                                     <input type="file" class="form-control" name="stamp" name='stamp' placeholder="" required='required'>
                                 </div>
-                                <div class="col-sm-8">
-                                    <label for="time" class="form-label">د تورید موده</label>
-                                    <input type="date" class="form-control" name="time" name='time' placeholder="" required='required'>
-                                </div>
 
-                                <div class="col-sm-12">
-                                    <label for="extra_info" class="form-label"> د نفتي موادو تاسیسات او ظرفیت په مرکز او ولایاتو کې</label>
-                                    <textarea type="text" class="form-control" name="extra_info" required='required'>
-                                    </textarea>
-                                </div>
-                            </div>
-
-                            <div class="row g-3 ">
-                                <div class="col-sm-12">
-                                    <div class="col-sm-4">
-                                        <h4><span style="position: relative; top:12px; " class="p-2 badge text-bg-success"> د شرکت د رئیس شهرت</span></h4>
+                                <div class="col-sm-12 col-md-12 col-lg-7 pt-5 row">
+                                    <div class="col-sm-6 col-lg-6 pt-3">
+                                        <span>
+                                            د نفتي توکو نوعیت انتخاب کړئ:
+                                        </span>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <hr>
+                                    <div class="form-check  form-switch col-lg-3 col-sm-6" style="margin-right: -50px">
+                                        <input type="checkbox" name="oil" value="oil" class="form-check-input" id="same-address">
+                                        <label class="form-check-label" for="same-address"> : تېل</label>
+                                        <br>
+                                        <input type="checkbox" name="gas" value="gas" class="form-check-input" id="same-address">
+                                        <label class="form-check-label" for="same-address"> : ګاز</label>
+                                        <br>
+                                        <input type="checkbox" name="condensate" value="condensate" class="form-check-input" id="same-address">
+                                        <label class="form-check-label" for="same-address"> : کاندنسات</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="ceo_name" placeholder="نوم" required='required'>
-                                </div>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control" name="ceo_fname" placeholder="د پلار نوم" required='required'>
-                                </div>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control" name="ceo_lname" placeholder="تخلص" required='required'>
-                                </div>
-
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control" name="ceo_email" style="text-align: right;" placeholder="ایمیل آدرس" required='required'>
-                                </div>
-                                <div class="col-sm-4">
-                                    <input type="number" class="form-control" name="ceo_phone" style="text-align: right;" placeholder="تلیفون نمبر" required='required'>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="ceo_sign" class="form-label">امضاء</label>
-                                    <input type="file" class="form-control" id="ceo_sign" name="ceo_sign" placeholder="د رئیس امضا" required='required'>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="ceo_tazkira" class="form-label">تذکره</label>
-                                    <input type="file" class="form-control" id="ceo_tazkira" name="ceo_tazkira" placeholder="تذکره" required='required'>
-                                </div>
                             </div>
-
-                            <div class="row g-3 py-5">
-                                <div class="col-sm-12">
-                                    <div class="col-sm-4">
-                                        <h4><span style="position: relative; top:12px; " class="p-2 badge text-bg-success"> د شرکت د معاون شهرت</span></h4>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="dep_name" placeholder="نوم" required='required'>
-                                </div>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control" name="dep_fname" placeholder="د پلار نوم" required='required'>
-                                </div>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control" name="def_lname" placeholder="تخلص" required='required'>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control" name="dep_email" style="text-align: right;" placeholder="د ایمیل آدرس" required='required'>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <input type="number" class="form-control" name="dep_phone" style="text-align: right;" placeholder="د تلیفون نمبر" required='required'>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="dep_sign" class="form-label">امضاء</label>
-                                    <input type="file" class="form-control" id="dep_sign" name="dep_sign" placeholder="امضاء" required='required'>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for='dep_tazkira' class="form-label">تذکره</label>
-                                    <input type="file" class="form-control" id="dep_tazkira" name="dep_tazkira" placeholder="تذکره" required='required'>
-                                </div>
+                            <div class="col-sm-12">
+                                <label for="extra_info" class="form-label"> د نفتي موادو تاسیسات او ظرفیت په مرکز او ولایاتو کې</label>
+                                <textarea type="text" class="form-control" name="extra_info" required='required'></textarea>
                             </div>
+                    </div>
+                </div>
 
-
-                            <hr class="my-4">
-                            <div class="col-sm-9 offset-2">
-                                <button class="w-100 btn btn-primary btn-lg" name='submit' type="submit">ثبتول</button>
-                            </div>
-                        </form>
+                <div class="row g-3 ">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <h4><span style="position: relative; top:12px; " class="p-2 badge text-bg-success"> د شرکت د رئیس شهرت</span></h4>
+                        </div>
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="ceo_name" placeholder="نوم" required='required'>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" name="ceo_fname" placeholder="د پلار نوم" required='required'>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" name="ceo_lname" placeholder="تخلص" required='required'>
                     </div>
 
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" name="ceo_email" style="text-align: right;" placeholder="ایمیل آدرس" required='required'>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" name="ceo_phone" style="text-align: right;" placeholder="تلیفون نمبر" required='required'>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="ceo_sign" class="form-label">امضاء</label>
+                        <input type="file" class="form-control" id="ceo_sign" name="ceo_sign" placeholder="د رئیس امضا" required='required'>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="ceo_tazkira" class="form-label">تذکره</label>
+                        <input type="file" class="form-control" id="ceo_tazkira" name="ceo_tazkira" placeholder="تذکره" required='required'>
+                    </div>
                 </div>
-            </main>
+
+                <div class="row g-3 py-5">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <h4><span style="position: relative; top:12px; " class="p-2 badge text-bg-success"> د شرکت د معاون شهرت</span></h4>
+                        </div>
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="dep_name" placeholder="نوم" required='required'>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" name="dep_fname" placeholder="د پلار نوم" required='required'>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" name="def_lname" placeholder="تخلص" required='required'>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" name="dep_email" style="text-align: right;" placeholder="د ایمیل آدرس" required='required'>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" name="dep_phone" style="text-align: right;" placeholder="د تلیفون نمبر" required='required'>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="dep_sign" class="form-label">امضاء</label>
+                        <input type="file" class="form-control" id="dep_sign" name="dep_sign" placeholder="امضاء" required='required'>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for='dep_tazkira' class="form-label">تذکره</label>
+                        <input type="file" class="form-control" id="dep_tazkira" name="dep_tazkira" placeholder="تذکره" required='required'>
+                    </div>
+                </div>
+
+
+                <hr class="my-4">
+                <div class="col-sm-9 offset-2">
+                    <button class="w-100 btn btn-primary btn-lg" name='submit' type="submit">ثبتول</button>
+                </div>
+                </form>
         </div>
+
+    </div>
+    </main>
+    </div>
     </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
 </body>

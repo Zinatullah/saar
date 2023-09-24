@@ -75,31 +75,26 @@ if (isset($_POST['submit'])) {
     // echo $dep_phone;
     // echo "<br/>";
 
-    $stamp = $_FILES['stamp'] ? $_FILES['stamp']['name'] : $data[11];
-    echo $stamp;
+    $stamp = $_FILES['stamp']['name'] ? $_FILES['stamp']['name'] : $data[11];
+    // echo $stamp . 'here';
+
+    // echo $stamp;
     // echo "<br/>";
-    $ceo_sign = $_FILES['ceo_sign'] ? $_FILES['ceo_sign']['name'] : $data[24];
+    $ceo_sign = $_FILES['ceo_sign']['name'] ? $_FILES['ceo_sign']['name'] : $data[24];
     // echo $ceo_sign;
     // echo "<br/>";
-    $dep_sign = $_FILES['dep_sign'] ? $_FILES['dep_sign']['name'] : $data[25];
+    $dep_sign = $_FILES['dep_sign']['name'] ? $_FILES['dep_sign']['name'] : $data[25];
     // echo $dep_sign;
     // echo "<br/>";
-    $ceo_tazkira = $_FILES['ceo_tazkira'] ? $_FILES['ceo_tazkira']['name'] : $data[26];
+    $ceo_tazkira = $_FILES['ceo_tazkira']['name'] ? $_FILES['ceo_tazkira']['name'] : $data[26];
     // echo $ceo_tazkira;
     // echo "<br/>";
-    $dep_tazkira = $_FILES['dep_tazkira'] ? $_FILES['dep_tazkira']['name'] : $data[27];
+    $dep_tazkira = $_FILES['dep_tazkira']['name'] ? $_FILES['dep_tazkira']['name'] : $data[27];
     // echo $data[27];
-    // echo $dep_tazkira;
-    // echo "<br/>";
 
-    $query = " UPDATE companies SET name = '$name', license = '$license', license_expire_date = '$license_expire_date', tax = '$tax', address = '$address', email = '$email', number = '$number', oil_type = '$oil_type', quantity = '$quantity', foreign_country = '$foreign_country', stamp = '$stamp', time =  '$time', extra_info =  '$extra_info', ceo_name =  '$ceo_name', ceo_fname =  '$ceo_fname', ceo_lname =  '$ceo_lname', dep_name =  '$dep_name', dep_fname =  '$dep_fname', def_lname =  '$def_lname', ceo_email =  '$ceo_email', ceo_phone =  '$ceo_phone', dep_email =  '$dep_email', dep_phone =  '$dep_phone', ceo_sign = '$ceo_sign', dep_sign = '$dep_sign', ceo_tazkira = $ceo_tazkira, dep_tazkira = $dep_tazkira WHERE id = $id";
+    $query = " UPDATE companies SET name = '$name', license = '$license', license_expire_date = '$license_expire_date', tax = '$tax', address = '$address', email = '$email', number = '$number', oil_type = '$oil_type', quantity = '$quantity', foreign_country = '$foreign_country', stamp = '$stamp', time =  '$time', extra_info =  '$extra_info', ceo_name =  '$ceo_name', ceo_fname =  '$ceo_fname', ceo_lname =  '$ceo_lname', dep_name =  '$dep_name', dep_fname =  '$dep_fname', def_lname =  '$def_lname', ceo_email =  '$ceo_email', ceo_phone =  '$ceo_phone', dep_email =  '$dep_email', dep_phone =  '$dep_phone', ceo_sign = '$ceo_sign', dep_sign = '$dep_sign', ceo_tazkira = '$ceo_tazkira', dep_tazkira = '$dep_tazkira' WHERE id = $id";
 
-    // mysqli_query($con, $query);
-
-    // echo $query;
-
-    // 
+    mysqli_query($con, $query);
     $var = $data[0];
-    // header('location: ./../company_details.php?id='.$var);
-    // 
+    header('location: ./../company_details.php?id='.$var);
 }

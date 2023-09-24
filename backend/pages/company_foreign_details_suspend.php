@@ -189,14 +189,14 @@ $data = mysqli_fetch_row($result);
                                     </div>
                                     <div class="col-sm-3 col-md-3">
                                         <form action="./companies/suspend_foreign.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">ځنډول</button>
+                                            <input type="hidden" name="id_unsuspend" value="<?php echo $data[0] ?>">
+                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">ځنډ لیرې کول</button>
                                         </form>
                                     </div>
                                     <div class="col-sm-3 col-md-3">
                                         <form action="./companies/block_foreing.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-warning btn-lg">بلاک کول</button>
+                                            <input type="hidden" name="id_unblock" value="<?php echo $data[0] ?>">
+                                            <button style="width: 100%" name="blocked" type="submit" class="btn btn-warning btn-lg">بلاک لیرې کول</button>
                                         </form>
                                     </div>
                                     <div class="col-sm-3 col-md-3">

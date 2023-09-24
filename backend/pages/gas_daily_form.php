@@ -1,3 +1,19 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+include("./../../db/connection.php");
+include("./../../db/functions.php");
+
+$query = "SELECT * FROM `companies_foreing` ";
+$result = mysqli_query($con, $query);
+$data = mysqli_fetch_all($result);
+
+$query1 = "SELECT * FROM `companies` ";
+$result1 = mysqli_query($con, $query1);
+$data1 = mysqli_fetch_all($result1);
+
+?>
+
+
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
@@ -6,7 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>ګاز ثبتول</title>
+    <title>څار</title>
     <link href="./../assets/bootstrap.rtl.min.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
@@ -88,9 +104,9 @@
     </style>
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
+    <script src="./../assets/jquery.min.js"></script>
+    <script src="./forms/countries.js"></script>
     <link rel="icon" href="../../images/favicon.png">
-
-
 </head>
 
 <body style="font-family: calibri !important;">
@@ -108,14 +124,14 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-gray">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">ګاز ثبتول</h1>
+                    <h1 class="h2">ورځنۍ فورمه</h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
                     <div class="col-md-7 col-lg-12 col-md-12">
                         <form class="needs-validation" novalidate="">
                             <div class="row g-3 my-3">
                                 <h4 class="text-center">
-                                    <span class="badge p-3 rounded-pill text-bg-success">د ګاز د نظارت لپاره ورځنۍ فورمه
+                                    <span class="badge p-3 rounded-pill text-bg-success">د نظارت لپاره ورځنۍ فورمه
                                     </span>
                                 </h4>
 
@@ -129,20 +145,26 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <select class="form-select form-select-lg" aria-label="Disabled select example">
+                                    <select id="getQuoteBtn" class="form-select form-select-lg" aria-label="Disabled select example">
                                         <option selected>داخلي شرکت انتخاب کړئ</option>
-                                        <option value="1">لمړی</option>
-                                        <option value="2">دوهم</option>
-                                        <option value="3">دریم</option>
+                                        <?php foreach ($data1 as $comapny) { ?>
+                                            <option value="<?php echo $comapny[1] ?>"><?php echo $comapny[1] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <select id ='dataContainer' class="form-select form-select-lg" aria-label="Disabled select example">
+                                        <option id='' selected> قرارداد انتخاب کړئ</option>
+                                        <option value="" id=""></option>
                                     </select>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <select class="form-select form-select-lg" aria-label="Disabled select example">
-                                        <option selected>بهرنی شرکت انتخاب کړئ</option>
-                                        <option value="1">لمړی</option>
-                                        <option value="2">دوهم</option>
-                                        <option value="3">دریم</option>
+                                        <option selected>د نفتي توکو نوعیت انتخاب کړئ</option>
+                                        <option value="ګاز">ګاز</option>
+                                        <option value="تېل">تېل</option>
                                     </select>
                                 </div>
 
@@ -248,6 +270,7 @@
         </div>
     </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

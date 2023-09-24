@@ -127,7 +127,7 @@ $data = mysqli_fetch_row($result);
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
                     <main class="container">
-                        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm" style="background-color: purple;">
+                        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm" style="background-color: #0c6663;">
                             <div class="lh-1">
                                 <h1 class="h3 mb-0 text-white mb-4 pt-2 lh-1" style="text-align: center">شرکت : <?php echo $data[1] ?></h1>
                                 <div class="row g-3">
@@ -246,17 +246,28 @@ $data = mysqli_fetch_row($result);
                                 </div>
 
                                 <div class="row g-3 my-5">
-                                    <div class="col-sm-1 col-md-1"></div>
-                                    <div class="col-sm-5 col-md-5">
+                                    <div class="col-sm-3 col-md-3">
                                         <form action="./company_edit.php" method="POST">
                                             <input type="hidden" name="edits" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-primary btn-lg">تغیرول</button>
+                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-info btn-lg">تغیرول</button>
                                         </form>
                                     </div>
-                                    <div class="col-sm-5 col-md-5">
+                                    <div class="col-sm-3 col-md-3">
+                                        <form action="./companies/suspend.php" method="POST">
+                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
+                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-primary btn-lg">ځنډول</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <form action="./companies/block.php" method="POST">
+                                            <input type="hidden" name="id" value="<?php echo $data[0] ?>">
+                                            <button style="width: 100%" name="edit" type="submit" class="btn btn-warning btn-lg">بلاک کول</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
                                         <form action="./companies/remove_company.php" method="POST">
                                             <input type="hidden" name="remove" value="<?php echo $data[0] ?>">
-                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-warning btn-lg">لمنځه وړل</button>
+                                            <button style="width: 100%" name="delete" type="submit" class="btn btn-danger btn-lg">لمنځه وړل</button>
                                         </form>
                                     </div>
                                 </div>

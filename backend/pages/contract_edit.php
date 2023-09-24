@@ -3,6 +3,14 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+if (isset($_POST['edit'])) {
+    $id = $_POST['edits'];
+    $query = "SELECT * FROM contracts WHERE id = $id";
+    $result = mysqli_query($con, $query);
+    $pre_data = mysqli_fetch_row($result);
+}
+
+
 $query = "SELECT * FROM `companies_foreing` ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
@@ -93,17 +101,6 @@ $data1 = mysqli_fetch_all($result1);
             --bs-btn-active-border-color: #5a23c8;
         }
 
-        ::placeholder {
-            color: rgba(0, 0, 0, .30) !important;
-            /* opacity: 1; */
-            /* Firefox */
-        }
-
-        ::-ms-input-placeholder {
-            /* Edge 12-18 */
-            color: red;
-        }
-
         .bd-mode-toggle {
             z-index: 1500;
         }
@@ -132,11 +129,11 @@ $data1 = mysqli_fetch_all($result1);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-gray">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">نوی قرارداد ثبتول </h1>
+                    <h1 class="h2">قرارداد تغیرول </h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
-                    <div class="col-md-7 col-lg-12 col-md-12" >
-                        <form action="./contracts/contract_add.php" enctype="multipart/form-data" method="POST">
+                <div class="my-4 w-100" width="900" height="380" >
+                    <div class="col-md-7 col-lg-12 col-md-12">
+                        <form action="./contracts/contract_edit.php" enctype="multipart/form-data" method="POST">
                             <div class="row g-3 my-5">
                                 <h4 class="text-center">
                                     <span class="badge p-3 rounded-pill text-bg-success"> د شرکت د قرارداد په هکله معلومات په دغه فورم کې ولیکئ
@@ -152,16 +149,18 @@ $data1 = mysqli_fetch_all($result1);
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">داخلي شرکت :</label>
                                     <select name="company" class="form-select form-select-lg" aria-label="Disabled select example" required>
-                                        <option selected value="">داخلي شرکت انتخاب کړئ</option>
+                                        <option selected value="<?php echo $pre_data[1] ?>"><?php echo $pre_data[1] ?></option>
                                         <?php foreach ($data1 as $comapny) { ?>
                                             <option value="<?php echo $comapny[1] ?>"><?php echo $comapny[1] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">بهرنۍ شرکت :</label>
                                     <select name="company_foreign" class="form-select form-select-lg" aria-label="Disabled select example" required>
-                                        <option selected value="">بهرنۍ شرکت انتخاب کړئ</option>
+                                        <option selected value="<?php echo $pre_data[2] ?>" ><?php echo $pre_data[2] ?></option>
                                         <?php foreach ($data as $comapny) { ?>
                                             <option value="<?php echo $comapny[1] ?>"><?php echo $comapny[1] ?></option>
                                         <?php } ?>
@@ -169,43 +168,39 @@ $data1 = mysqli_fetch_all($result1);
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="منبع هېواد" value="" name="source_country" required="">
+                                    <label for="lastName" class="form-label">منبع هېواد :</label>
+                                    <input type="hidden" value="<?PHP echo $pre_data[0] ?>" name="id">
+                                    <input type="text" class="form-control" placeholder="منبع هېواد" value="<?PHP echo $pre_data[3] ?>" name="source_country" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="مارکه" value="" name="mark" required="">
+                                    <label for="lastName" class="form-label">د نفتي توکو نوعیت او انالېز :</label>
+                                    <input type="text" class="form-control" placeholder="د نفتي توکو نوعیت او آنالیز" value="<?PHP echo $pre_data[4] ?>" name="analyz" required="">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="lastName" class="form-label">د نفتي توکو مقدار :</label>
+                                    <input type="text" class="form-control" placeholder="د نفتي توکو مقدار" value="<?PHP echo $pre_data[5] ?>" name="quantity" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="د نفتي توکو نوعیت او آنالیز" value="" name="analyz" required="">
-                                </div>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="د نفتي توکو مقدار" value="" name="quantity" required="">
+                                    <label for="lastName" class="form-label">د بارګیري ځاي :</label>
+                                    <input type="text" class="form-control" placeholder="د بارګیرۍ ځای" value="<?PHP echo $pre_data[6] ?>" name="place" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="د بارګیرۍ ځای" value="" name="place" required="">
+                                    <label for="lastName" class="form-label">د انتقال لاره :</label>
+                                    <input type="text" class="form-control" placeholder="د انتقال لاره" value="<?PHP echo $pre_data[7] ?>" name="path" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="د انتقال لاره" value="" name="path" required="">
+                                    <label for="lastName" class="form-label">د ترانسپورت نوعیت :</label>
+                                    <input type="text" class="form-control" placeholder="د ترانسپورت نوعیت" value="<?PHP echo $pre_data[8] ?>" name="transport" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="د ترانسپورت نوعیت" value="" name="transport" required="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <input type="text" name="contract_valid_date" class="form-control" id="lastName" placeholder="د قرارداد موده" value="" required="">
-                                </div>
-                               
-                                <div class="col-sm-4">
-                                    <input type="text" name="price_per_ton" class="form-control" id="lastName" placeholder="د في ټن قېمت" value="" required="">
-                                </div>
-
-                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">بندر :</label>
                                     <select name="loading" class="form-select" aria-label="Disabled select example">
-                                        <option selected>بندر انتخاب کړئ</option>
+                                        <option selected><?php echo $pre_data[9] ?></option>
                                         <option value="تورغندی">تورغندی</option>
                                         <option value="آقینه">آقینه</option>
                                         <option value="حیرتان">حیرتان</option>
@@ -218,32 +213,38 @@ $data1 = mysqli_fetch_all($result1);
                                     </select>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <select name="type" class="form-select" aria-label="Disabled select example">
-                                        <option selected>د جنس نوعیت</option>
-                                        <option value="تېل">تېل</option>
-                                        <option value="ګاز">ګاز</option>
-                                        <option value="کاندنسات">کاندنسات</option>
-                                    </select>
+                                <div class="col-sm-4">
+                                    <label for="lastName" class="form-label">د قرارداد موده :</label>
+                                    <input type="text" name="contract_valid_date" class="form-control" id="lastName" placeholder="د قرارداد موده" value="<?PHP echo $pre_data[10] ?>" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <label for="lastName" class="form-label">د في ټن قېمت :</label>
+                                    <input type="text" name="price_per_ton" class="form-control" id="lastName" placeholder="د في ټن قېمت" value="<?PHP echo $pre_data[11] ?>" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">د قرارداد دپیل نېټه</label>
-                                    <input type="date" name="contract_start_date" class="form-control" id="lastName" placeholder="د قرارداد دپیل نېټه" value="" required="">
+                                    <label for="lastName" class="form-label">د قرارداد دپیل نېټه :</label>
+                                    <input type="date" name="contract_start_date" class="form-control" id="lastName" placeholder="د قرارداد دپیل نېټه" value="<?PHP echo $pre_data[12] ?>" required="">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">د بار ګیری مهال وېش</label>
-                                    <input type="date" name="loading_date" class="form-control" id="lastName" placeholder="" value="" required="">
+                                    <label for="lastName" class="form-label">د بار ګیری مهال وېش :</label>
+                                    <input type="date" name="loading_date" class="form-control" id="lastName" placeholder="" value="<?PHP echo $pre_data[13] ?>" required="">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">د قرارداد کافي</label>
-                                    <input type="file" name="contract_scan_copy" class="form-control" id="lastName" placeholder="" value="" required="">
+                                    <label for="lastName" class="form-label">د قرارداد کافي :</label>
+                                    <!-- <input type="file" name="contract_scan_copy" class="form-control" id="lastName" placeholder="" value="<?PHP echo $pre_data[14] ?>" required=""> -->
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" style="width: 150px"><?php echo $pre_data[15] ?></label>
+                                        <input type="file" class="form-control" name='contract_scan_copy' value="<?php echo $pre_data[15] ?>" id="inputGroupFile01">
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <div class="input-group">
-                                        <textarea class="form-control" name="extra_info" placeholder="د في ټن د انتقال، ترانزیت، ګمرکي محصول، مالیاتو او نورو فیسونو لګښتونه" aria-label="With textarea"></textarea>
+                                        <textarea class="form-control" name="extra_info" placeholder="<?php echo $pre_data[14] ?>" aria-label="With textarea"></textarea>
                                     </div>
                                 </div>
 

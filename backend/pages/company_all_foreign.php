@@ -3,7 +3,7 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
-$query = "SELECT * FROM `companies_foreing` ";
+$query = "SELECT * FROM `companies_foreing` where suspend = 0 and block = 0 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
 ?>
@@ -125,7 +125,7 @@ $data = mysqli_fetch_all($result);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">ټول شرکتونه</h1>
+                    <h1 class="h2">ټول بهرني شرکتونه</h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
                     <section class="intro" dir='rtl'>
@@ -155,8 +155,8 @@ $data = mysqli_fetch_all($result);
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[1] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[2] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[4] ?></td>
+                                                                <td style="border: 1px solid lightgray"><?php echo $value[5] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[11] ?></td>
-                                                                <td style="border: 1px solid lightgray"><?php echo $value[9] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[7] ?></td>
                                                                 <td scope="col-2" style="border: 1px solid lightgray">
                                                                     <a href="./company_foreign_details.php?id=<?php echo $value[0]?>">

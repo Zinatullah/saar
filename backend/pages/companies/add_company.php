@@ -11,7 +11,6 @@ if (isset($_POST['submit'])) {
     $address = $_POST['address'];
     $email = $_POST['email'];
     $number = $_POST['number'];
-    $oil_type = $_POST['oil_type'];
     $quantity = $_POST['quantity'];
     $foreign_country = $_POST['foreign_country'];
     $time = $_POST['time'];
@@ -27,35 +26,45 @@ if (isset($_POST['submit'])) {
     $dep_email = $_POST['dep_email'];
     $dep_phone = $_POST['dep_phone'];
 
+    $oil = isset($_POST['oil']) ? $_POST['oil'] : 'none';
+    $gas = isset($_POST['gas']) ? $_POST['gas'] : 'none';
+    $condensate = isset($_POST['condensate']) ? $_POST['condensate'] : '';
+
+    $oil_type = $oil . ' ' . $gas . ' ' . $condensate;
+
     $stamp = $_FILES['stamp']['name'];
     $ceo_sign = $_FILES['ceo_sign']['name'];
     $dep_sign = $_FILES['dep_sign']['name'];
     $ceo_tazkira = $_FILES['ceo_tazkira']['name'];
     $dep_tazkira = $_FILES['dep_tazkira']['name'];
 
+
     $check_query = "Select * from companies where email = '$email' or name = '$name' or license = '$license' or ceo_email= '$ceo_email' or dep_email = '$dep_email' ";
     $result = mysqli_query($con, $check_query);
 
-    print_r($result);
-
     if ($result && mysqli_num_rows($result) > 0) {
-        $message = 'لطفا خپل ایمیلونه، د جواز نمبر او د شرکت نوم په دقیقه توګه ولیکئ';
-        echo "<SCRIPT> alert('$message')
-        window.location.replace('./../add_company.php');
-            </SCRIPT>";
-        echo $message;
+    $message = 'لطفا خپل ایمیلونه، د جواز نمبر او د شرکت نوم په دقیقه توګه ولیکئ';
+    echo "<SCRIPT> alert('$message')
+    window.location.replace('./../add_company.php');
+        </SCRIPT>";
 
     } else {
+    $query = "INSERT INTO companies(name, license, license_expire_date, tax, address, email, number, oil_type, quantity, foreign_country, stamp, time, extra_info, ceo_name, ceo_fname, ceo_lname, dep_name, dep_fname, def_lname, ceo_email, ceo_phone, dep_email, dep_phone, ceo_sign, dep_sign, ceo_tazkira, dep_tazkira) VALUES ( '$name' , '$license', '$license_expire_date', '$tax', '$address', '$email', '$number', '$oil_type', '$quantity', '$foreign_country', '$stamp', '$time', '$extra_info', '$ceo_name', '$ceo_fname', '$ceo_lname', '$dep_name', '$dep_fname', '$def_lname', '$ceo_email', '$ceo_phone', '$dep_email', '$dep_phone', '$ceo_sign', '$dep_sign', '$ceo_tazkira', '$dep_tazkira' )";
 
-        $query = "INSERT INTO companies(name, license, license_expire_date, tax, address, email, number, oil_type, quantity, foreign_country, stamp, time, extra_info, ceo_name, ceo_fname, ceo_lname, dep_name, dep_fname, def_lname, ceo_email, ceo_phone, dep_email, dep_phone, ceo_sign, dep_sign, ceo_tazkira, dep_tazkira) VALUES ( '$name' , '$license', '$license_expire_date', '$tax', '$address', '$email', '$number', '$oil_type', '$quantity', '$foreign_country', '$stamp', '$time', '$extra_info', '$ceo_name', '$ceo_fname', '$ceo_lname', '$dep_name', '$dep_fname', '$def_lname', '$ceo_email', '$ceo_phone', '$dep_email', '$dep_phone', '$ceo_sign', '$dep_sign', '$ceo_tazkira', '$dep_tazkira' )";
-
-
-        mysqli_query($con, $query);
+    $result = mysqli_query($con, $query);
+    // if (!$result) {
+    //     $error = mysqli_error($con);
+    //     $message =  "MySQL Error: " . $error;
+    //     echo "<SCRIPT> alert('$message')
+    //     window.location.replace('./../add_company.php');
+    //         </SCRIPT>";
+    // } else {
         $message = 'شرکت ثبت شو';
-        echo $message;
         echo "<SCRIPT> alert('$message')
         window.location.replace('./../add_company.php');
             </SCRIPT>";
+    // }
+
     }
 } else {
 }
