@@ -25,7 +25,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            <h6 class="px-4"> شرکتونه</h6>
+                            <h6 class="px-1"> شرکتونه</h6>
                         </button>
                     </h2>
                     
@@ -126,7 +126,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            <h6 class="px-4">قراردادونه</h6>
+                            <h6 class="px-1">قراردادونه</h6>
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" class=" accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -159,7 +159,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            <h6 class="px-4"> د نظارت فومونه</h6>
+                            <h6 class="px-1"> د نظارت فومونه</h6>
                         </button>
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -202,7 +202,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                            <h6 class="px-4">ورځنۍ نرخونه</h6>
+                            <h6 class="px-1">ورځني نرخونه</h6>
                         </button>
                     </h2>
                     <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -227,7 +227,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                            <h6 class="px-4"> راپورونه</h6>
+                            <h6 class="px-1"> راپورونه</h6>
                         </button>
                     </h2>
                     <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -277,7 +277,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                            <h6 class="px-4"> تنظیمات</h6>
+                            <h6 class="px-1"> تنظیمات</h6>
                         </button>
                     </h2>
                     <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -335,7 +335,7 @@
     <hr class="my-0">
     <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-4 gap-2" href="./../index.php">
+            <a class="nav-link d-flex align-items-center px-1 gap-2" href="./../index.php">
                 <svg class="bi">
                     <use xlink:href="#door-closed" />
                 </svg>

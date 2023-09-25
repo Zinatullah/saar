@@ -23,6 +23,8 @@ if (isset($_POST['submit'])) {
     $extra_info = $_POST['extra_info'];
     $contract_scan_copy = $_FILES['contract_scan_copy']['name'];
 
+    echo $loading_date;
+
     // {  
     // $company;
     // echo $company . '<br />';
@@ -58,7 +60,18 @@ if (isset($_POST['submit'])) {
 
     $query = "INSERT INTO contracts(company, company_foreign, source_country, analyz, quantity, place, path, transport, loading, contract_valid_date, price_per_ton, contract_start_date, loading_date, extra_info, contract_scan_copy, mark, type) VALUES ('$company' , '$company_foreign' , '$source_country' , '$analyz' , '$quantity' , '$place' , '$path' , '$transport' , '$loading' , '$contract_valid_date' , '$price_per_ton' , '$contract_start_date' , '$loading_date' , '$extra_info' , '$contract_scan_copy', '$mark', '$type') ";
 
+
     $result = mysqli_query($con, $query);
+
+    if ($result) {
+        // Query was successful
+        echo "Query executed successfully.";
+    } else {
+        // Query failed
+        echo "Query failed: " . $con->error;
+    }
+    
+
     // echo $result;
 
     if ($result) {

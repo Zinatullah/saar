@@ -3,11 +3,11 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
-$query = "SELECT * FROM `companies_foreing` ";
+$query = "SELECT * FROM companies_foreing where block = 0 and suspend = 0 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
 
-$query1 = "SELECT * FROM `companies` ";
+$query1 = "SELECT * FROM companies where block = 0 and suspend = 0 ";
 $result1 = mysqli_query($con, $query1);
 $data1 = mysqli_fetch_all($result1);
 
@@ -115,6 +115,12 @@ $data1 = mysqli_fetch_all($result1);
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
     <link rel="icon" href="../../images/favicon.png">
+
+    <!-- Date picker -->
+    <script src="./contracts/assets/jquery.min.js"></script>
+    <script src="./contracts/assets/bootstrap-datepicker.js"></script>
+    <link href="./contracts/assets//bootstrap-datepicker.css" rel="stylesheet" />
+
 </head>
 
 <body style="font-family: calibri !important;">
@@ -135,7 +141,7 @@ $data1 = mysqli_fetch_all($result1);
                     <h1 class="h2">نوی قرارداد ثبتول </h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
-                    <div class="col-md-7 col-lg-12 col-md-12" >
+                    <div class="col-md-7 col-lg-12 col-md-12">
                         <form action="./contracts/contract_add.php" enctype="multipart/form-data" method="POST">
                             <div class="row g-3 my-5">
                                 <h4 class="text-center">
@@ -198,12 +204,12 @@ $data1 = mysqli_fetch_all($result1);
                                 <div class="col-sm-4">
                                     <input type="text" name="contract_valid_date" class="form-control" id="lastName" placeholder="د قرارداد موده" value="" required="">
                                 </div>
-                               
+
                                 <div class="col-sm-4">
                                     <input type="text" name="price_per_ton" class="form-control" id="lastName" placeholder="د في ټن قېمت" value="" required="">
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <select name="loading" class="form-select" aria-label="Disabled select example">
                                         <option selected>بندر انتخاب کړئ</option>
                                         <option value="تورغندی">تورغندی</option>
@@ -218,7 +224,7 @@ $data1 = mysqli_fetch_all($result1);
                                     </select>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <select name="type" class="form-select" aria-label="Disabled select example">
                                         <option selected>د جنس نوعیت</option>
                                         <option value="تېل">تېل</option>
@@ -234,7 +240,7 @@ $data1 = mysqli_fetch_all($result1);
 
                                 <div class="col-sm-4">
                                     <label for="lastName" class="form-label">د بار ګیری مهال وېش</label>
-                                    <input type="date" name="loading_date" class="form-control" id="lastName" placeholder="" value="" required="">
+                                    <input type="text" name="loading_date" id="Txt_Date" placeholder="وختونه انتخاب کړئ" style="cursor: pointer;"  class="form-control" required="">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="lastName" class="form-label">د قرارداد کافي</label>
@@ -261,6 +267,17 @@ $data1 = mysqli_fetch_all($result1);
         </div>
     </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $("#Txt_Date").datepicker({
+            format: 'd-M-yyyy',
+            inline: false,
+            lang: 'en',
+            step: 5,
+            multidate: 5,
+            closeOnDateSelect: true
+        });
+    </script>
 </body>
 
 </html>

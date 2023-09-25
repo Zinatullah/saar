@@ -3,11 +3,13 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
-$query = "SELECT * FROM `companies_foreing` ";
+$query = "SELECT * FROM companies_foreing where block = 0 and suspend = 0 ";
+
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
 
-$query1 = "SELECT * FROM `companies` ";
+$query1 = "SELECT * FROM companies where block = 0 and suspend = 0 ";
+
 $result1 = mysqli_query($con, $query1);
 $data1 = mysqli_fetch_all($result1);
 
@@ -105,7 +107,6 @@ $data1 = mysqli_fetch_all($result1);
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
     <script src="./../assets/jquery.min.js"></script>
-    <script src="./forms/countries.js"></script>
     <link rel="icon" href="../../images/favicon.png">
 </head>
 
@@ -126,18 +127,18 @@ $data1 = mysqli_fetch_all($result1);
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">ورځنۍ فورمه</h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
-                    <div class="col-md-7 col-lg-12 col-md-12">
-                        <form class="needs-validation" novalidate="">
+                <div class="my-4 w-100 text-bg-secondary" width="900" height="380" >
+                    <div class="col-md-7 col-lg-12 col-md-12 p-3">
+                        <form action="./forms/gas_daily_form.php" method="post" enctype="multipart/form-data">
                             <div class="row g-3 my-3">
                                 <h4 class="text-center">
-                                    <span class="badge p-3 rounded-pill text-bg-success">د نظارت لپاره ورځنۍ فورمه
+                                    <span class="badge p-3 rounded-pill text-bg-dark">د نظارت لپاره ورځنۍ فورمه
                                     </span>
                                 </h4>
 
                                 <div class="col-sm-12">
-                                    <div class="col-sm-4">
-                                        <span style="position: relative; top:12px " class="p-2 badge text-bg-success">لطفآ فورمه په دقیقه توګه ډکه کړئ</span>
+                                    <div class="col-sm-4 text-center">
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-center text-bg-warning">یوازې داخلي شرکت او قرارداد انتخاب کړئ نورې برخې په اوتومات ډول ډکیږي</span>
                                     </div>
                                     <div class="col-sm-12">
                                         <hr>
@@ -145,7 +146,7 @@ $data1 = mysqli_fetch_all($result1);
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <select id="getQuoteBtn" class="form-select form-select-lg" aria-label="Disabled select example">
+                                    <select name="interior_country" id="getQuoteBtn" class="form-select form-select-lg" aria-label="Disabled select example">
                                         <option selected>داخلي شرکت انتخاب کړئ</option>
                                         <?php foreach ($data1 as $comapny) { ?>
                                             <option value="<?php echo $comapny[1] ?>"><?php echo $comapny[1] ?></option>
@@ -154,113 +155,109 @@ $data1 = mysqli_fetch_all($result1);
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <select id ='dataContainer' class="form-select form-select-lg" aria-label="Disabled select example">
+                                    <select name='contract' id='dataContainer' class="form-select form-select-lg" aria-label="Disabled select example">
                                         <option id='' selected> قرارداد انتخاب کړئ</option>
                                         <option value="" id=""></option>
                                     </select>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <select class="form-select form-select-lg" aria-label="Disabled select example">
-                                        <option selected>د نفتي توکو نوعیت انتخاب کړئ</option>
-                                        <option value="ګاز">ګاز</option>
-                                        <option value="تېل">تېل</option>
-                                    </select>
+                                <div class="col-sm-4">
+                                    <input type="text" name="country" class="form-control" id="country" placeholder="منبع هېواد" value="" required="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="type" class="form-control" id="type" placeholder="د جنس نوعیت" value="" required="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="mark" class="form-control" id="mark" placeholder="مارکه" value="" required="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="quantity" class="form-control" id="quantity" placeholder="د جنس مقدار" value="" required="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="price" class="form-control" id="price" placeholder="د شرکت خرید (في ټن)" value="" required="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="custom_price" class="form-control" placeholder="د ګمرک قیمت" value="" required="">
                                 </div>
 
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د جنس نوعیت" value="" required="">
+                                    <input type="text" name="dolar_price" class="form-control" placeholder="د ډالر ورځنۍ نرخ" value="" required="">
                                 </div>
 
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="مارکه" value="" required="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د جنس مقدار" value="" required="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="منبع هېواد" value="" required="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="قراردادي شرکت" value="" required="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د ګمرک قیمت" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="بندري قیمت" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د شرکت خرید (في ټن)" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="ګمرکي محصول" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="ترانزیت" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="مالیات" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="فیسونه" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="ترانسپورتي مصارف" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د امارتي شرکت ۱۵ ورځنی قيمت" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د ډالر ورځنۍ نرخ" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="lastName" placeholder="(۰.۶) د حق الخدمت فیصدي" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="lastName" placeholder="د جنس په اساس" value="" required="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="lastName" placeholder="په افغانۍ" value="" required="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="lastName" placeholder="په ډالر" value="" required="">
-                                </div>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control" id="lastName" placeholder="تاريخ" value="" required="">
+                                    <div class="col-sm-12">
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-danger">دغه برخه تاسو په خپله ډکه کړئ</span>
+                                    </div>
+                                    <div class="col-sm-12" style="color: white">
+                                        <hr class="" style="color: white; font-weight:500"> 
+                                    </div>
                                 </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="bandar_price" class="form-control" placeholder="بندري قیمت" value="" required="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="custom" class="form-control" placeholder="ګمرکي محصول" value="" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="transit" class="form-control" placeholder="ترانزیت" value="" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="tax" class="form-control" placeholder="مالیات" value="" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="fees" class="form-control" placeholder="فیسونه" value="" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="transport_price" class="form-control" placeholder="ترانسپورتي مصارف" value="" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="fifteen_days" class="form-control" placeholder="د امارتي شرکت ۱۵ ورځنی قيمت" value="" required="">
+                                </div>
+
+
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="service_fees" class="form-control" placeholder="(۰.۶) د حق الخدمت فیصدي" value="" required="">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <input type="text" name="material_price" class="form-control" placeholder="د جنس په اساس" value="" required="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="afs_price" class="form-control" placeholder="په افغانۍ" value="" required="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="dol_price" class="form-control" placeholder="په ډالر" value="" required="">
+                                </div>
+                                <!-- <div class="col-sm-12">
+                                    <input type="date" class="form-control" placeholder="تاريخ" value="" required="">
+                                </div> -->
                             </div>
                             <hr class="">
 
                             <div class="col-sm-9 offset-2">
-                                <button class="w-100 btn btn-primary btn-lg" type="submit">ثبتول</button>
+                                <button class="w-100 btn btn-dark btn-lg" name="submit" type="submit">ثبتول</button>
                             </div>
                         </form>
                     </div>
@@ -270,6 +267,7 @@ $data1 = mysqli_fetch_all($result1);
         </div>
     </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
+    <script src="./forms/countries.js"></script>
 
 </body>
 

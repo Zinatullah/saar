@@ -4,9 +4,12 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../../db/connection.php");
 include("./../../../db/functions.php");
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM `contracts` WHERE company = '$id'";
+if (isset($_GET['contract_id'])) {
+    $id = $_GET['contract_id'];
+    $sql = "SELECT * FROM `contracts` WHERE id = '$id'";
+
+    // echo $sql;
+
     $result = mysqli_query($con, $sql);
 
     $data = array();
@@ -18,12 +21,6 @@ if (isset($_GET['id'])) {
         }
     }
 
-    // print_r($data);
-
     header('Content-Type: application/json');
     echo json_encode($data);
-}
-
-if(isset($_GET[''])){
-    
 }
