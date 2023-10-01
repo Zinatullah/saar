@@ -1,3 +1,16 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+include("./db/connection.php");
+include("./db/functions.php");
+
+$query = "SELECT * FROM `auth_users` ";
+$result = mysqli_query($con, $query);
+$data = mysqli_fetch_all($result);
+
+
+?>
+
+
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
@@ -496,7 +509,7 @@
                                         <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
 
                                             <li class="nav-item">
-                                                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                                <a class="nav-link d-flex align-items-center gap-2" href="./signup.php">
                                                     <svg width='18px' height="18px" fill="#000000" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
                                                         <g>
                                                             <path d="M21.9,37c0-2.7,0.9-5.8,2.3-8.2c1.7-3,3.6-4.2,5.1-6.4c2.5-3.7,3-9,1.4-13c-1.6-4.1-5.4-6.5-9.8-6.4
@@ -512,7 +525,7 @@
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link d-flex align-items-center gap-2" href="./all_users.php">
+                                                <a class="nav-link d-flex align-items-center gap-2" href="#">
                                                     <svg width='18px' height="18px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35.695px" height="35.695px" viewBox="0 0 35.695 35.695" style="enable-background:new 0 0 35.695 35.695;" xml:space="preserve">
                                                         <g>
                                                             <path d="M11.558,10.767c0-3.473,2.815-6.29,6.289-6.29c3.476,0,6.289,2.817,6.289,6.29c0,3.475-2.813,6.29-6.289,6.29
@@ -556,53 +569,45 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2" class="text-center">د سیستم لپاره نوی کاروونکی ثبتول</h1>
+                    <h1 class="h2"> ټول قراردادونه</h1>
                 </div>
-                <div class="my-4 w-100 p-4" width="900" height="380" style="background: #004a43; padding-bottom: 50px !important;">
-                    <div class="container text-center align-items-center">
-                        <div style="margin-bottom: 20px;">
-                            <img src="./images/logo.png" alt="AOGC logo" height="100" width="100">
-                        </div>
-                        <div class="text-center">
-                            <main class="form-signin">
-                                <main class="form-signin m-auto col-md-8 col-sm-8 col-lg-8 ">
-                                    <form action="register.php" method="post">
-                                        <div class="d-flex justify-content-evenly mb-2">
-                                            <div class="form-floating flex-grow-1">
-                                                <input name="name" required type="text" class="form-control text-start" id="floatingInput1" placeholder="نوم">
-                                                <label for="floatingInput1">نوم</label>
-                                            </div>
-                                            <div class="form-floating flex-grow-1" style="margin-right: 10px;">
-                                                <input name="lastname" required type="text" class="form-control text-start" id="floatingInput2" placeholder="">
-                                                <label for="floatingInput2">تخلص</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-evenly mb-2">
-                                            <div class="form-floating flex-grow-1">
-                                                <input name="email" required type="email" class="form-control text-start" id="floatingInput3" placeholder="ایمیل آدرس">
-                                                <label for="floatingInput3">ایمیل آدرس</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-evenly mb-2">
-                                            <div class="form-floating flex-grow-1">
-                                                <input name="pwd" required type="password" class="form-control text-start" id="floatingInput4" placeholder="پټ نوم">
-                                                <label for="floatingInput4">پټ نوم</label>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-evenly mb-2">
-                                            <select name="user_type" class="form-select form-select-lg" aria-label="Disabled select example">
-                                                <option selected>د صلاحیت ډول انتخاب کړئ</option>
-                                                <option value="user">User</option>
-                                                <option value="admin">Admin</option>
-                                            </select>
-                                        </div>
-                                        <button class="btn btn-primary w-100 py-2 mt-2" type="submit">ثبتول</button>
-                                    </form>
-                                </main>
-                            </main>
-                        </div>
+                <div class="my-4 w-100" width="900" height="380">
+                    <h3 class="text-center">
+                        ټول ثبت شوي قراردادونه
+                    </h3>
+                    <div class="table-responsive small">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">نوم</th>
+                                    <th scope="col">تخلص</th>
+                                    <th scope="col">ایمیل آدرس</th>
+                                    <th scope="col">صلاحیت</th>
+                                    <th scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data as $element) { ?>
+                                    <tr>
+                                        <td><?php echo $element[1] ?></td>
+                                        <td><?php echo $element[2] ?></td>
+                                        <td><?php echo $element[3] ?></td>
+                                        <td><?php echo $element[5] ?></td>
+                                        <td style="text-align: left;">
+                                            <span>
+                                                <a href="./details.php?id=<?php echo $element[0] ?>">
+                                                    <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
+                                                </a>
+                                                <form action="./remove.php" method="POST" style="display: inline;">
+                                                    <input type="hidden" name="remove" value="<?php echo $element[0] ?>">
+                                                    <button name="delete" type="submit" class="btn btn-danger btn-sm px-3">لمنځه وړل</button>
+                                                </form>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </main>

@@ -14,15 +14,7 @@ $(document).ready(function () {
         // Add retrieved data as options
         $.each(response, function (index, data) {
           $("#dataContainer").append(
-            '<option value="' +
-              data.id +
-              '">' +
-              data.id +
-              " : " +
-              data.company +
-              " - " +
-              data.company_foreign +
-              "</option>"
+            '<option value="' + data.id + ' : ' + data.company + ' - ' + data.company_foreign +'">' + data.id + " : " + data.company + " - " + data.company_foreign +"</option>"
           );
         });
       },
@@ -42,23 +34,11 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         $.each(response, function (index, data) {
-          console.log(response)
           $("#country").val(data.source_country)
           $("#type").val(data.type)
           $("#mark").val(data.mark)
           $("#quantity").val(data.quantity)
           $("#price").val(data.price_per_ton)
-          // $("#dataContainer").append(
-          //   '<option value="' +
-          //     data.id +
-          //     '">' +
-          //     data.id +
-          //     " : " +
-          //     data.company +
-          //     " - " +
-          //     data.company_foreign +
-          //     "</option>"
-          // );
         }
         );
       },

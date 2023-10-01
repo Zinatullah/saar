@@ -158,14 +158,38 @@ $data = mysqli_fetch_row($result);
                                         <span class="form-control">جواز نمبر : <?php echo $data[9] ?></span>
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <span class="form-control">د جواز کافي : <?php echo $data[12] ?></span>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
                                         <span class="form-control">هېواد : <?php echo $data[11] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
                                         <span class="form-control">رسمي آدرس : <?php echo $data[6] ?></span>
                                     </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <span class="form-control">
+                                            <a href="./companies/uploads/foreign/<?php echo $data[12] ?>" style="text-decoration: none">د جواز کافي :
+                                                <svg width="20px" height="20px" viewBox="0 0 1.2 1.2" version="1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48">
+                                                    <g fill="#1565C0">
+                                                        <path points="24,37.1 13,24 35,24" d="M0.6 0.928L0.325 0.6L0.875 0.6Z" />
+                                                        <path x="20" y="4" width="8" height="4" d="M0.5 0.1H0.7V0.2H0.5V0.1z" />
+                                                        <path x="20" y="10" width="8" height="4" d="M0.5 0.25H0.7V0.35H0.5V0.25z" />
+                                                        <path x="20" y="16" width="8" height="11" d="M0.5 0.4H0.7V0.675H0.5V0.4z" />
+                                                        <path x="6" y="40" width="36" height="4" d="M0.15 1H1.05V1.1H0.15V1z" />
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                            <img src="./companies/uploads/foreign/<?php echo $data[12] ?>" width="100" height="50" alt="د مهر نمونه" style="margin-right: 50px">
+                                        </span>
+                                    </div>
+
+
+                                    <div class="col-sm-12 mt-5">
+                                        <div class="col-sm-4">
+                                            <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت د مالکانو اړوند معلومات</span>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr>
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-6 col-md-6 col-lg-6">
                                         <span class="form-control">د شرکت د مالک نوم : <?php echo $data[2] ?></span>
                                     </div>

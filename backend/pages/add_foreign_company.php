@@ -109,7 +109,7 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">د بهرني شرکت ثبتول</h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
+                <div class="my-4 w-100 text-bg-secondary p-3" width="900" height="380" style="border-radius: 20px">
                     <div class="col-md-7 col-lg-12 col-md-12">
                         <form method="POST" enctype="multipart/form-data" action="./companies/add_company_foreign.php">
                             <div class="row g-3 my-5">
@@ -119,7 +119,7 @@
                                 </h4>
                                 <div class="col-sm-12">
                                     <div class="col-sm-4">
-                                        <span style="position: relative; top:12px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
                                     </div>
                                     <div class="col-sm-12">
                                         <hr>
@@ -154,6 +154,15 @@
                                 <div class="col-sm-12">
                                     <label for='license_date' class="form-label">د جواز د اعتبار موده</label>
                                     <input type="date" id="license_date" class="form-control" style="text-align: right;" name="license_date" placeholder="د جواز د اعتبار موده " value="" required="">
+                                </div>
+
+                                <div class="col-sm-12 mt-5">
+                                    <div class="col-sm-4">
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت د مالکانو اړوند معلومات</span>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <hr>
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-6">

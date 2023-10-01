@@ -28,7 +28,7 @@
                             <h6 class="px-1"> شرکتونه</h6>
                         </button>
                     </h2>
-                    
+
                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                         <h6 class="text-center pt-3">داخلي شرکتونه</h6>
                         <li>
@@ -56,7 +56,7 @@
                                     <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z" />
                                     <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z" />
                                 </svg>
-                                 ځنډول شوي شرکتونه
+                                ځنډول شوي شرکتونه
                             </a>
                         </li>
 
@@ -66,7 +66,7 @@
                                     <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z" />
                                     <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z" />
                                 </svg>
-                                 بلاک شوي شرکتونه
+                                بلاک شوي شرکتونه
                             </a>
                         </li>
 
@@ -91,14 +91,14 @@
                             </a>
                         </li>
 
-                        
+
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="./company_suspend_foreign.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-buildings" viewBox="0 0 16 16">
                                     <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z" />
                                     <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z" />
                                 </svg>
-                                 ځنډول شوي شرکتونه
+                                ځنډول شوي شرکتونه
                             </a>
                         </li>
 
@@ -108,7 +108,7 @@
                                     <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z" />
                                     <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z" />
                                 </svg>
-                                 بلاک شوي شرکتونه
+                                بلاک شوي شرکتونه
                             </a>
                         </li>
 
@@ -152,7 +152,7 @@
             </div>
         </ul>
 
-        <!-- Oil and Gas -->
+        <!-- Oil and Gas Forms-->
         <hr class="my-0">
         <ul class="nav flex-column">
             <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -164,30 +164,21 @@
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="./gas_daily_form.php">
-                                <svg fill="blue" width="20px" height="20px" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg" baseProfile="full" xml:space="preserve">
-                                    <path d="M42.75 19v12.498c1.833-.12 6.168 1.29 5.542 17.585.791 4.75 6.333 4.75 7.52-1.583 1.188-4.75-1.979-4.75-3.562-19 0-1.583 0-6.333-6.333-9.5v-1.583c6.333 0 11.083 7.916 11.083 9.5 0 1.583-1.583 1.583-1.583 1.583s.395 9.5 1.979 11.083c1.583 1.584 1.187 6.334 1.187 9.5 0 3.167-4.75 6.334-6.333 6.334-1.583 0-6.333 0-6.333-4.75 0-4.327-.657-13.907-3.167-15.582v20.332c.874 0 1.583.709 1.583 1.583v3.167H19V57c0-.874.709-1.583 1.583-1.583V19a3.167 3.167 0 0 1 3.167-3.167h15.833A3.167 3.167 0 0 1 42.75 19ZM25.73 33.25h11.874c.875 0 1.98-1.105 1.98-1.98V20.98c0-.875-1.105-1.98-1.98-1.98H25.73c-.874 0-1.979 1.105-1.979 1.98v10.29c0 .875 1.105 1.98 1.98 1.98Z" />
+                            <a class="nav-link d-flex align-items-center gap-2" href="./daily_form.php">
+                                <svg class="bi">
+                                    <use xlink:href="#file-earmark-text" />
                                 </svg>
-                                ګاز ثبتول
+                                ورځنی فورم
                             </a>
                         </li>
-
+                    </div>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="./oil_daily_form.php">
-                                <svg fill="blue" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 18 18" style="enable-background:new 0 0 489.9 489.9;" xml:space="preserve" width="18" height="18">
-                                    <g>
-                                        <g>
-                                            <path d="M15.434 3.039V0.728A0.726 0.726 0 0 0 14.706 0H8.769a0.726 0.726 0 0 0 -0.728 0.728V2.796H5.208V1.495c0 -0.382 -0.345 -0.728 -0.728 -0.728s-0.728 0.305 -0.728 0.728v1.301H3.561a2.181 2.181 0 0 0 -2.183 2.183v10.839A2.181 2.181 0 0 0 3.561 18h10.876a2.183 2.183 0 0 0 2.183 -2.183V4.978a2.16 2.16 0 0 0 -1.187 -1.94zm-5.934 -1.543h4.483V2.796h-4.483V1.495zm5.629 14.326a0.688 0.688 0 0 1 -0.691 0.691H3.562a0.688 0.688 0 0 1 -0.691 -0.691V4.983a0.688 0.688 0 0 1 0.691 -0.691h10.876a0.688 0.688 0 0 1 0.691 0.691v10.839z" />
-                                            <g>
-                                                <path d="M11.322 10.189a0.483 0.483 0 0 0 -0.482 0.482v2.403c0 0.265 0.217 0.482 0.482 0.482s0.482 -0.217 0.482 -0.482v-2.403a0.483 0.483 0 0 0 -0.482 -0.482z" />
-                                                <path d="M11.322 8.675a0.483 0.483 0 0 0 -0.482 0.482v0.202c0 0.265 0.217 0.482 0.482 0.482s0.482 -0.217 0.482 -0.482v-0.202a0.483 0.483 0 0 0 -0.482 -0.482z" />
-                                                <path d="M7.214 7.786c-1.591 0 -2.885 1.293 -2.885 2.885s1.293 2.885 2.885 2.885 2.885 -1.293 2.885 -2.885 -1.293 -2.885 -2.885 -2.885zm0 4.806c-1.062 0 -1.921 -0.863 -1.921 -1.921s0.863 -1.921 1.921 -1.921 1.921 0.863 1.921 1.921 -0.863 1.921 -1.921 1.921z" />
-                                                <path d="M13.192 7.786a0.483 0.483 0 0 0 -0.482 0.482v4.806c0 0.265 0.217 0.482 0.482 0.482s0.482 -0.217 0.482 -0.482V8.267a0.483 0.483 0 0 0 -0.482 -0.482z" />
-                                            </g>
-                                        </g>
-                                    </g>
+                            <a class="nav-link d-flex align-items-center gap-2" href="./daily_form_all.php">
+                                <svg class="bi">
+                                    <use xlink:href="#file-earmark-text" />
                                 </svg>
-                                تېل ثبتول
+                                ورځنی ډکې شوې فورمې
                             </a>
                         </li>
                     </div>
@@ -281,7 +272,7 @@
                         </button>
                     </h2>
                     <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-<!-- 
+                        <!-- 
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="./settings_country.php">
                                 <svg width="18px" height="18px" viewBox="0 0 0.54 0.54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +298,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                            <a class="nav-link d-flex align-items-center gap-2" href="./../../all_users.php">
                                 <svg width='18px' height="18px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35.695px" height="35.695px" viewBox="0 0 35.695 35.695" style="enable-background:new 0 0 35.695 35.695;" xml:space="preserve">
                                     <g>
                                         <path d="M11.558,10.767c0-3.473,2.815-6.29,6.289-6.29c3.476,0,6.289,2.817,6.289,6.29c0,3.475-2.813,6.29-6.289,6.29
@@ -329,13 +320,12 @@
                 </div>
             </div>
         </ul>
-
     </div>
 
     <hr class="my-0">
     <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-1 gap-2" href="./../index.php">
+            <a class="nav-link d-flex align-items-center px-1 gap-2" href="./../../index.php">
                 <svg class="bi">
                     <use xlink:href="#door-closed" />
                 </svg>

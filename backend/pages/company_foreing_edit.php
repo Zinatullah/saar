@@ -126,7 +126,7 @@ if (isset($_POST['edit'])) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">د بهرني شرکت تغیرول</h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
+                <div class="my-4 w-100 px-3 text-bg-secondary" width="900" height="380">
                     <div class="col-md-7 col-lg-12 col-md-12">
 
                         <form method="POST" enctype="multipart/form-data" action="./companies/company_foreing_edit.php">
@@ -137,10 +137,10 @@ if (isset($_POST['edit'])) {
                                 </h4>
                                 <div class="col-sm-12">
                                     <div class="col-sm-4">
-                                        <span style="position: relative; top:12px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
                                     </div>
                                     <div class="col-sm-12">
-                                        <hr>
+                                        <hr style="border: 2px solid white">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -173,17 +173,28 @@ if (isset($_POST['edit'])) {
                                 </div>
 
                                 <div class="col-sm-4">
+                                    <label for='license_date' class="form-label">د جواز د اعتبار موده</label>
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupFile01" style="width: 150px"><?php echo $data[10] ?></label>
+                                        <input type="date" class="form-control" name='license_date' value='<?php echo $data[10] ?>' id="inputGroupFile01">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
                                     <label for='license_copy' class="form-label">د جواز د کافي</label>
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01" style="width: 150px"><?php echo $data[12] ?></label>
                                         <input type="file" class="form-control" name='license_copy' value='<?php echo $data[10] ?>' id="inputGroupFile01">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for='license_date' class="form-label">د جواز د اعتبار موده</label>
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="inputGroupFile01" style="width: 150px"><?php echo $data[10] ?></label>
-                                        <input type="date" class="form-control" name='license_date' value='<?php echo $data[10] ?>' id="inputGroupFile01">
+
+
+                                <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت د مالکانو اړوند معلومات</span>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <hr style="border: 2px solid white">
                                     </div>
                                 </div>
 

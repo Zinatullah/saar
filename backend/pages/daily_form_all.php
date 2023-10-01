@@ -3,7 +3,7 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
-$query = "SELECT * FROM `contracts` ";
+$query = "SELECT * FROM daily_form ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
 
@@ -127,44 +127,38 @@ $data = mysqli_fetch_all($result);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"> ټول قراردادونه</h1>
+                    <h1 class="h2">د نن ورځې ټول فورمونه</h1>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
-                    <h3 class="text-center">
-                        ټول ثبت شوي قراردادونه
-                    </h3>
                     <div class="table-responsive small">
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th scope="col">آیډي</th>
                                     <th scope="col">داخلي شرکت</th>
-                                    <th scope="col">بهرنۍ شرکت</th>
                                     <th scope="col">منبع هېواد</th>
+                                    <th scope="col">د قرارداد آیډي</th>
                                     <th scope="col">د قرارداد موده</th>
-                                    <th scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
+                                    <th colspan="2" scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($data as $element) { ?>
                                     <tr>
-                                        <td><?php echo $element[0] ?></td>
                                         <td><?php echo $element[1] ?></td>
-                                        <td><?php echo $element[2] ?></td>
                                         <td><?php echo $element[3] ?></td>
+                                        <td><?php echo $element[2] ?></td>
                                         <td><?php echo $element[10] ?></td>
-                                        <td style="text-align: left;">
+                                        <td colspan="2" style="text-align: left;">
                                             <span>
-                                                <a href="./contract_details.php?id=<?php echo $element[0] ?>">
-                                                    <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
+                                                <a href="./daily_form_details.php?id=<?php echo $element[0] ?>">
+                                                    <button type="button" class="btn btn-success btn-sm px-2">جزئیات</button>
                                                 </a>
-                                                <form action="./contracts/contract_remove.php" method="POST" style="display: inline;">
+                                                <form action="./forms/remove.php" method="POST" style="display: inline;">
                                                     <input type="hidden" name="remove" value="<?php echo $element[0] ?>">
-                                                    <button name="delete" type="submit" class="btn btn-danger btn-sm px-3">لمنځه وړل</button>
+                                                    <button name="delete" type="submit" class="btn btn-danger btn-sm px-1">لمنځه وړل</button>
                                                 </form>
                                             </span>
                                         </td>
-                                        <td></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

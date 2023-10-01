@@ -3,6 +3,16 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+
+$id = $_GET['id'];
+
+$pre_query = "SELECT *  FROM daily_form WHERE id = $id";
+$pre_result = mysqli_query($con, $pre_query);
+$pre_data = mysqli_fetch_row($pre_result);
+
+$today = date("Y-m-d 0:00:01");
+$today_end = date("Y-m-d 23:59:59");
+
 $query = "SELECT * FROM companies_foreing where block = 0 and suspend = 0 ";
 
 $result = mysqli_query($con, $query);
@@ -12,6 +22,32 @@ $query1 = "SELECT * FROM companies where block = 0 and suspend = 0 ";
 
 $result1 = mysqli_query($con, $query1);
 $data1 = mysqli_fetch_all($result1);
+
+$query2 = "SELECT min(rate) as rate FROM rate_custom where timestamp >= '$today'";
+$result2 = mysqli_query($con, $query2);
+$data2 = mysqli_fetch_assoc($result2);
+
+
+$query3 = "SELECT min(rate) as rate FROM rate_dolar where timestamp >= '$today'";
+$result3 = mysqli_query($con, $query3);
+$data3 = mysqli_fetch_assoc($result3);
+$data33 = mysqli_fetch_all($result3);
+// print_r($result3['num_rows']);s
+
+$query4 = "SELECT min(rate) as rate FROM rate_oil where timestamp >= '$today' ";
+$result4 = mysqli_query($con, $query4);
+$data4 = mysqli_fetch_assoc($result4);
+
+$query5 = "SELECT min(rate) as rate FROM rate_gas where timestamp >= '$today'";
+$result5 = mysqli_query($con, $query5);
+$data5 = mysqli_fetch_assoc($result5);
+// print_r($result3);
+
+$query6 = "SELECT min(rate) as rate FROM rate_15_days where timestamp >= '$today'";
+$result6 = mysqli_query($con, $query6);
+$data6 = mysqli_fetch_assoc($result6);
+
+// echo time();
 
 ?>
 
@@ -127,9 +163,9 @@ $data1 = mysqli_fetch_all($result1);
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">ورځنۍ فورمه</h1>
                 </div>
-                <div class="my-4 w-100 text-bg-secondary" width="900" height="380" >
+                <div class="my-4 w-100 text-bg-secondary" width="900" height="380">
                     <div class="col-md-7 col-lg-12 col-md-12 p-3">
-                        <form action="./forms/gas_daily_form.php" method="post" enctype="multipart/form-data">
+                        <form action="./forms/edit_daily_form.php" method="post" enctype="multipart/form-data">
                             <div class="row g-3 my-3">
                                 <h4 class="text-center">
                                     <span class="badge p-3 rounded-pill text-bg-dark">د نظارت لپاره ورځنۍ فورمه
@@ -141,13 +177,14 @@ $data1 = mysqli_fetch_all($result1);
                                         <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-center text-bg-warning">یوازې داخلي شرکت او قرارداد انتخاب کړئ نورې برخې په اوتومات ډول ډکیږي</span>
                                     </div>
                                     <div class="col-sm-12">
-                                        <hr>
+                                        <hr style="border: 2px solid white;">
                                     </div>
                                 </div>
+                                <input type="hidden" name="id"  value="<?php echo $pre_data['0'] ?>">
 
                                 <div class="col-sm-6">
                                     <select name="interior_country" id="getQuoteBtn" class="form-select form-select-lg" aria-label="Disabled select example">
-                                        <option selected>داخلي شرکت انتخاب کړئ</option>
+                                        <option value="<?php echo $pre_data['3'] ?>" selected><?php echo $pre_data['1'] ?></option>
                                         <?php foreach ($data1 as $comapny) { ?>
                                             <option value="<?php echo $comapny[1] ?>"><?php echo $comapny[1] ?></option>
                                         <?php } ?>
@@ -156,108 +193,111 @@ $data1 = mysqli_fetch_all($result1);
 
                                 <div class="col-sm-6">
                                     <select name='contract' id='dataContainer' class="form-select form-select-lg" aria-label="Disabled select example">
-                                        <option id='' selected> قرارداد انتخاب کړئ</option>
+                                        <option id='' value="<?php echo $pre_data['3'] ?>" selected><?php echo $pre_data['2'] ?></option>
                                         <option value="" id=""></option>
                                     </select>
                                 </div>
-
+                                
                                 <div class="col-sm-4">
-                                    <input type="text" name="country" class="form-control" id="country" placeholder="منبع هېواد" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">منبع هېواد</label>
+                                    <input type="text" name="country" class="form-control" id="country" value="<?php echo $pre_data['3'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="type" class="form-control" id="type" placeholder="د جنس نوعیت" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">د جنس نوعیت</label>
+                                    <input type="text" name="type" class="form-control" id="type" value="<?php echo $pre_data['4'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="mark" class="form-control" id="mark" placeholder="مارکه" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">مارکه</label>
+                                    <input type="text" name="mark" class="form-control" id="mark" value="<?php echo $pre_data['5'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="quantity" class="form-control" id="quantity" placeholder="د جنس مقدار" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">د جنس مقدار</label>
+                                    <input type="text" name="quantity" class="form-control" id="quantity" value="<?php echo $pre_data['6'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="price" class="form-control" id="price" placeholder="د شرکت خرید (في ټن)" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">د شرکت خرید في ټن</label>
+                                    <input type="text" name="price" class="form-control" id="price" value="<?php echo $pre_data['7'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="custom_price" class="form-control" placeholder="د ګمرک قیمت" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">د ګمرک قېمت</label>
+                                    <input type="text" name="custom_price" class="form-control" value="<?php echo $pre_data['8'] ?>" required>
                                 </div>
 
+                                <div class="col-sm-4">
+                                    <label for='dep_tazkira' class="form-label">د ډالر ورځنۍ نرخ</label>
+                                    <input type="text" name="dolar_price" class="form-control" value="<?php echo $pre_data['9']?>" required>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for='dep_tazkira' class="form-label">د تېلو نړیوال نرخ</label>
+                                    <input type="text" name="oil_rate" class="form-control" value="<?php echo $pre_data['10']?>" required>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for='dep_tazkira' class="form-label">د ګاز نړیوال نرخ</label>
+                                    <input type="text" name="gas_rate" class="form-control" value="<?php echo $pre_data['11']?>" required>
+                                </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="dolar_price" class="form-control" placeholder="د ډالر ورځنۍ نرخ" value="" required="">
+                                    <label for='dep_tazkira' class="form-label">د امارتي شرکت ۱۵ ورځنۍ قېمت</label>
+                                    <input type="text" name="fifteen_days" class="form-control" value="<?php echo $pre_data['12'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <div class="col-sm-12">
-                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-danger">دغه برخه تاسو په خپله ډکه کړئ</span>
+                                        <span style="position: relative; top:12px; font-size: 18px;" class="p-2 badge text-bg-danger">دغه برخه تاسو په خپله ډکه کړئ</span>
                                     </div>
                                     <div class="col-sm-12" style="color: white">
-                                        <hr class="" style="color: white; font-weight:500"> 
+                                        <hr class="" style="color: white; font-weight:500; border: 2px solid white;">
                                     </div>
                                 </div>
 
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="bandar_price" class="form-control" placeholder="بندري قیمت" value="" required="">
+                                    <input type="number" style="text-align: right;" name="bandar_price" class="form-control" placeholder="بندري قیمت" value="<?php echo $pre_data['13'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="custom" class="form-control" placeholder="ګمرکي محصول" value="" required="">
+                                    <input type="number" style="text-align: right;" name="custom" class="form-control" placeholder="ګمرکي محصول" value="<?php echo $pre_data['14'] ?>" required>
                                 </div>
 
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="transit" class="form-control" placeholder="ترانزیت" value="" required="">
+                                    <input type="number" style="text-align: right;" name="transit" class="form-control" placeholder="ترانزیت" value="<?php echo $pre_data['15'] ?>" required>
                                 </div>
 
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="tax" class="form-control" placeholder="مالیات" value="" required="">
+                                    <input type="number" style="text-align: right;" name="tax" class="form-control" placeholder="مالیات" value="<?php echo $pre_data['16'] ?>" required>
                                 </div>
 
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="fees" class="form-control" placeholder="فیسونه" value="" required="">
+                                    <input type="number" style="text-align: right;" name="fees" class="form-control" placeholder="فیسونه" value="<?php echo $pre_data['17'] ?>" required>
                                 </div>
 
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="transport_price" class="form-control" placeholder="ترانسپورتي مصارف" value="" required="">
+                                    <input type="number" style="text-align: right;" name="transport_price" class="form-control" placeholder="<?php echo $pre_data['18'] ?>" value="<?php echo $pre_data['18'] ?>" required>
                                 </div>
 
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="fifteen_days" class="form-control" placeholder="د امارتي شرکت ۱۵ ورځنی قيمت" value="" required="">
+                                    <input type="number" style="text-align: right;" name="service_fees" class="form-control" placeholder="<?php echo $pre_data['19'] ?>" value="<?php echo $pre_data['19'] ?>" required>
                                 </div>
 
-
-
-
                                 <div class="col-sm-4">
-                                    <input type="text" name="service_fees" class="form-control" placeholder="(۰.۶) د حق الخدمت فیصدي" value="" required="">
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <input type="text" name="material_price" class="form-control" placeholder="د جنس په اساس" value="" required="">
+                                    <input type="number" style="text-align: right;" name="material_price" class="form-control" placeholder="د جنس په اساس" value="<?php echo $pre_data['20'] ?>" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="afs_price" class="form-control" placeholder="په افغانۍ" value="" required="">
+                                    <input type="number" style="text-align: right;" name="afs_price" class="form-control" placeholder="په افغانۍ" value="<?php echo $pre_data['21'] ?>" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="dol_price" class="form-control" placeholder="په ډالر" value="" required="">
+                                    <input type="number" style="text-align: right;" name="dol_price" class="form-control" placeholder="په ډالر" value="<?php echo $pre_data['22'] ?>" required>
                                 </div>
-                                <!-- <div class="col-sm-12">
-                                    <input type="date" class="form-control" placeholder="تاريخ" value="" required="">
-                                </div> -->
                             </div>
                             <hr class="">
 
+                            
                             <div class="col-sm-9 offset-2">
-                                <button class="w-100 btn btn-dark btn-lg" name="submit" type="submit">ثبتول</button>
+                                <button class="w-100 btn btn-primary btn-lg" name="submit" type="submit">ثبتول</button>
                             </div>
                         </form>
                     </div>

@@ -126,7 +126,7 @@ if (isset($_POST['edit'])) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">نوی شرکت اضافه کول</h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
+                <div class="my-4 px-3 w-100 text-bg-secondary" width="900" height="380">
                     <div class="col-md-7 col-lg-12 col-md-12">
 
                         <form method="POST" enctype="multipart/form-data" action="./companies/company_edit.php">

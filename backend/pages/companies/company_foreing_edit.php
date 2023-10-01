@@ -25,13 +25,38 @@ if (isset($_POST['submit'])) {
     $country = $_POST['country'] ? $_POST['country'] : $data[11];
     $license_copy = $_FILES['license_copy']['name'] ? $_FILES['license_copy']['name'] : $data[12];
 
-    $query = "UPDATE companies_foreing SET name = '$name' , ceo  = '$ceo' , ceo_phone = '$ceo_phone', dep = '$dep', dep_phone = '$dep_phone', address = '$address', phone = '$phone', email = '$email', license = '$license', license_date = '$license_date', country = '$country', license_copy = '$license_copy' WHERE id = '$id'";
+    
+    function upload_file($file_to_upload, $target_file)
+    {
+        $targetDirectory = 'uploads/foreign/';
+        $targetFile = $targetDirectory . $file_to_upload;
+        if (move_uploaded_file($target_file, $targetFile)) {
+        }
+    }
+
+
+    $min = 1; // Minimum value
+    $max = 100000000000000000; // Maximum value
+    $randomNumber = rand($min, $max);
+    
+    if ($_FILES['license_copy']['name'] != '') {
+        $license_copy_name_ext = pathinfo($_FILES['license_copy']['name'], PATHINFO_EXTENSION);
+        $license_copy_name = 'license_copy_' . $randomNumber . '.' . $license_copy_name_ext;
+        $query = "UPDATE `companies_foreing` SET license_copy = '$license_copy_name' where id = $id";
+        mysqli_query($con, $query);
+
+        upload_file($license_copy_name, $_FILES['license_copy']['tmp_name']);
+        echo "File upload success";
+
+        $pre_file_path = 'uploads/foreign/'.$data[12];
+        unlink($pre_file_path);
+    }
+    
+    
+    $query = "UPDATE companies_foreing SET name = '$name' , ceo  = '$ceo' , ceo_phone = '$ceo_phone', dep = '$dep', dep_phone = '$dep_phone', address = '$address', phone = '$phone', email = '$email', license = '$license', license_date = '$license_date', country = '$country' WHERE id = '$id'";
 
     $result = mysqli_query($con, $query);
     $var = $data[0];
 
-    header('location: ./../company_foreign_details.php?id='.$var);
-
-    
-
+    header('location: ./../company_foreign_details.php?id=' . $var);
 }

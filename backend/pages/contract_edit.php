@@ -131,7 +131,7 @@ $data1 = mysqli_fetch_all($result1);
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">قرارداد تغیرول </h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380" >
+                <div class="my-4 w-100 text-bg-secondary p-3" width="900" height="380" >
                     <div class="col-md-7 col-lg-12 col-md-12">
                         <form action="./contracts/contract_edit.php" enctype="multipart/form-data" method="POST">
                             <div class="row g-3 my-5">
@@ -142,10 +142,10 @@ $data1 = mysqli_fetch_all($result1);
 
                                 <div class="col-sm-12">
                                     <div class="col-sm-4">
-                                        <span style="position: relative; top:12px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
                                     </div>
                                     <div class="col-sm-12">
-                                        <hr>
+                                        <hr style="border: 2px solid white">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -249,7 +249,7 @@ $data1 = mysqli_fetch_all($result1);
                                 </div>
 
                             </div>
-                            <hr class="">
+                            <hr class="" style="border: 2px solid white">
 
                             <div class="col-sm-9 offset-2">
                                 <button class="w-100 btn btn-primary btn-lg" name="submit" type="submit">ثبتول</button>

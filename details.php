@@ -1,3 +1,16 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+include("./db/connection.php");
+include("./db/functions.php");
+
+$id = $_GET['id'];
+
+$query = "SELECT * FROM `auth_users` where id = $id ";
+$result = mysqli_query($con, $query);
+$data = mysqli_fetch_row($result);
+?>
+
+
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
@@ -19,7 +32,7 @@
 
 
     <style>
-        .bd-placeholder-img {
+        .bd-value-img {
             font-size: 1.125rem;
             text-anchor: middle;
             -webkit-user-select: none;
@@ -28,7 +41,7 @@
         }
 
         @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
+            .bd-value-img-lg {
                 font-size: 3.5rem;
             }
         }
@@ -566,34 +579,35 @@
                         <div class="text-center">
                             <main class="form-signin">
                                 <main class="form-signin m-auto col-md-8 col-sm-8 col-lg-8 ">
-                                    <form action="register.php" method="post">
+                                    <form action="update.php" method="post">
                                         <div class="d-flex justify-content-evenly mb-2">
                                             <div class="form-floating flex-grow-1">
-                                                <input name="name" required type="text" class="form-control text-start" id="floatingInput1" placeholder="نوم">
+                                                <input name="name" required type="text" class="form-control text-start" id="floatingInput1" value="<?php echo $data[1] ?>">
                                                 <label for="floatingInput1">نوم</label>
                                             </div>
                                             <div class="form-floating flex-grow-1" style="margin-right: 10px;">
-                                                <input name="lastname" required type="text" class="form-control text-start" id="floatingInput2" placeholder="">
+                                                <input name="lastname" required type="text" class="form-control text-start" id="floatingInput2" value="<?php echo $data[2] ?>">
                                                 <label for="floatingInput2">تخلص</label>
                                             </div>
                                         </div>
 
                                         <div class="d-flex justify-content-evenly mb-2">
                                             <div class="form-floating flex-grow-1">
-                                                <input name="email" required type="email" class="form-control text-start" id="floatingInput3" placeholder="ایمیل آدرس">
+                                                <input name="email" required type="email" class="form-control text-start" id="floatingInput3" value="<?php echo $data[3] ?>">
                                                 <label for="floatingInput3">ایمیل آدرس</label>
                                             </div>
                                         </div>
 
                                         <div class="d-flex justify-content-evenly mb-2">
                                             <div class="form-floating flex-grow-1">
-                                                <input name="pwd" required type="password" class="form-control text-start" id="floatingInput4" placeholder="پټ نوم">
+                                                <input name="pwd" required type="password" class="form-control text-start" id="floatingInput4" value="<?php echo $data[4] ?>">
                                                 <label for="floatingInput4">پټ نوم</label>
                                             </div>
                                         </div>
+                                        <input name="id" required type="hidden" class="form-control text-start" id="floatingInput4" value="<?php echo $data[0] ?>">
                                         <div class="d-flex justify-content-evenly mb-2">
                                             <select name="user_type" class="form-select form-select-lg" aria-label="Disabled select example">
-                                                <option selected>د صلاحیت ډول انتخاب کړئ</option>
+                                                <option selected class="text-bg-info"><?php echo $data[5] ?></option>
                                                 <option value="user">User</option>
                                                 <option value="admin">Admin</option>
                                             </select>

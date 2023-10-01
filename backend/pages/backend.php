@@ -116,15 +116,28 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">کورپاڼه</h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
-                    <h3>
-                        څار کاریال ته ښه راغلاست!
-                    </h3>
-                    <p>
-                        د اوس لپاره دا اپلېکېشن تر کار لاندې دی، ممکن ځینې نیمګړتیاوې ولري<br />
-                        انشاء الله هغه به ډېر ژر اصلاح شي<br />
-                        مننه له انتظار څخه مو
-                    </p>
+                <div class="my-4 w-100 text-white" width="900" height="380" style="border-radius: 20px; background-color: #0c6663;">
+                    <div class="col-md-7 col-lg-12 col-md-12 p-3">
+
+                        <h3>
+                            څار کاریال ته ښه راغلاست!
+                        </h3>
+                        <hr class="my-3" style="border: 2px solid white">
+                        <!-- <div class="row g-3">
+                            <div class="col-sm-4 col-md-4 col-lg-4 p-3 rounded shadow-sm" style="background: #bc703a;">
+                                <h1 class="h6 mb-2">ټول داخلي شرکتونه</h1>
+                                <small class="" style="padding-top: 5px">Since 2011</small>
+                            </div>
+                            <div class=" col-sm-4 col-md-4 col-lg-4   p-3 rounded shadow-sm" style="background: #bc703a;">
+                                <h1 class="h6 mb-2">ټول بهرني شرکتونه</h1>
+                                <small class="" style="padding-top: 5px">Since 2011</small>
+                            </div>
+                            <div class=" p-3 rounded shadow-sm" style="background: #bc703a;">
+                                <h1 class="h6 mb-2">ټول قراردادونه</h1>
+                                <small class="" style="padding-top: 5px">Since 2011</small>
+                            </div> -->
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

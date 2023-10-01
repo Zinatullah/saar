@@ -61,7 +61,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        
+
         ::placeholder {
             color: rgba(0, 0, 0, .30) !important;
             /* opacity: 1; */
@@ -92,7 +92,6 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
-
     </style>
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
@@ -118,11 +117,11 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">نوی داخلي شرکت اضافه کول</h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
-                    <div class="col-md-7 col-lg-12 col-md-12">
+                <div class="my-4 w-100 text-bg-secondary" width="900" height="380" style="border-radius: 20px">
+                    <div class="col-md-7 col-lg-12 col-md-12 p-3">
 
                         <form method="POST" enctype="multipart/form-data" action="./companies/add_company.php">
-                            <div class="row g-3 my-5">
+                            <div class="row g-3 my-1">
                                 <h4 class="text-center">
                                     <span class="badge p-3 rounded-pill text-bg-success"> د شرکت اړوند معلومات په دغه فورم کې ولیکئ
                                     </span>
@@ -168,7 +167,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="time" class="form-label">د تورید موده</label>
-                                    <input type="text" class="form-control" name="time" name='time' placeholder="" required='required'>
+                                    <input type="text" class="form-control" name="time" name='time' placeholder="د تورید موده" required='required'>
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="stamp" class="form-label">نمونه مهر شرکت</label>
@@ -193,6 +192,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="col-sm-12">
                                 <label for="extra_info" class="form-label"> د نفتي موادو تاسیسات او ظرفیت په مرکز او ولایاتو کې</label>
                                 <textarea type="text" class="form-control" name="extra_info" required='required'></textarea>
@@ -200,13 +200,13 @@
                     </div>
                 </div>
 
-                <div class="row g-3 ">
+                <div class="row g-3 text-bg-secondary p-3 " style="border-radius: 20px">
                     <div class="col-sm-12">
                         <div class="col-sm-4">
                             <h4><span style="position: relative; top:12px; " class="p-2 badge text-bg-success"> د شرکت د رئیس شهرت</span></h4>
                         </div>
                         <div class="col-sm-12">
-                            <hr>
+                            <hr style="border: 2px solid white">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -235,13 +235,13 @@
                     </div>
                 </div>
 
-                <div class="row g-3 py-5">
+                <div class="row g-3 py-5 text-bg-secondary p-3" style="border-radius: 20px">
                     <div class="col-sm-12">
                         <div class="col-sm-4">
                             <h4><span style="position: relative; top:12px; " class="p-2 badge text-bg-success"> د شرکت د معاون شهرت</span></h4>
                         </div>
                         <div class="col-sm-12">
-                            <hr>
+                            <hr style="border: 2px solid white;">
                         </div>
                     </div>
                     <div class="col-sm-4">
