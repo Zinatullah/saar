@@ -142,6 +142,8 @@ $data = mysqli_fetch_all($result);
                                     <th scope="col">بهرنۍ شرکت</th>
                                     <th scope="col">منبع هېواد</th>
                                     <th scope="col">د قرارداد موده</th>
+                                    <th scope="col">تاریخ</th>
+                                    <th scope="col">وخت</th>
                                     <th scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
                                 </tr>
                             </thead>
@@ -153,6 +155,10 @@ $data = mysqli_fetch_all($result);
                                         <td><?php echo $element[2] ?></td>
                                         <td><?php echo $element[3] ?></td>
                                         <td><?php echo $element[10] ?></td>
+                                        <?php $date = explode(' ', $element[18]); ?>
+                                        <td><?php echo $date[0] ?></td>
+                                        <?php $date = explode('.', $date[1]); ?>
+                                        <td><?php echo $date[0] ?></td>
                                         <td style="text-align: left;">
                                             <span>
                                                 <a href="./contract_details.php?id=<?php echo $element[0] ?>">

@@ -37,7 +37,7 @@ $data = mysqli_fetch_row($result);
             user-select: none;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 7128px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
@@ -133,7 +133,7 @@ $data = mysqli_fetch_row($result);
                             <div class="lh-1">
                                 <h1 class="h3 mb-0 text-white mb-4 pt-2 lh-1" style="text-align: center">
                                     <span style="margin-left: 10px">
-                                        <?php echo $data[1] ?> 
+                                        <?php echo $data[1] ?>
                                     </span>
                                     <span>:</span>
                                     <span style="margin-right: 10px">
@@ -186,17 +186,52 @@ $data = mysqli_fetch_row($result);
                                     <div class="col-sm-6 col-md-6 col-lg-4">
                                         <span class="form-control">د فی ټن قیمت : <?php echo $data[11] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-4">
+                                    <div class="col-sm-12 col-md-12 col-lg-4">
                                         <span class="form-control">د قرارداد د پیل نېټه : <?php echo $data[12] ?></span>
                                     </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-4">
-                                        <span class="form-control">د بارګیری مهالوېش : <?php echo $data[13] ?></span>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-4">
-                                        <span class="form-control">د قرارداد کافي : <?php echo $data[15] ?></span>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-12">
+
+                                    <div class="col-sm-12 col-md-12 col-lg-4 text-wrap">
                                         <span class="form-control">نور جزئیات : <?php echo $data[14] ?></span>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-4">
+                                        <span class="form-control">
+                                            <a href="./contracts/uploads/<?php echo $data[15] ?>" style="text-decoration: none">د قرارداد کافي :
+                                                <svg width="20px" height="20px" viewBox="0 0 1.2 1.2" version="1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48">
+                                                    <g fill="#1565C0">
+                                                        <path points="24,37.1 13,24 35,24" d="M0.6 0.928L0.325 0.6L0.875 0.6Z" />
+                                                        <path x="20" y="4" width="8" height="4" d="M0.5 0.1H0.7V0.2H0.5V0.1z" />
+                                                        <path x="20" y="10" width="8" height="4" d="M0.5 0.25H0.7V0.35H0.5V0.25z" />
+                                                        <path x="20" y="16" width="8" height="11" d="M0.5 0.4H0.7V0.675H0.5V0.4z" />
+                                                        <path x="6" y="40" width="36" height="4" d="M0.15 1H1.05V1.1H0.15V1z" />
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                            <img src="./contracts/uploads/<?php echo $data[15] ?>" width="100" height="50" alt="د مهر نمونه" style="margin-right: 50px">
+                                        </span>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <?php $dates = explode(',', $data[13]) ?>
+                                        <span class="form-control">د بارګیری مهالوېش :
+
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <?php foreach ($dates as $date) { ?>
+                                                            <td>
+                                                                <?php echo $date; ?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td style="width: 20px"></td>
+                                                        <?php } ?>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+
+                                            <?php
+
+                                            ?>
+                                        </span>
                                     </div>
                                 </div>
 

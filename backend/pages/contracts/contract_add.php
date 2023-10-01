@@ -23,42 +23,29 @@ if (isset($_POST['submit'])) {
     $extra_info = $_POST['extra_info'];
     $contract_scan_copy = $_FILES['contract_scan_copy']['name'];
 
-    echo $loading_date;
+    function upload_file($file_to_upload, $target_file)
+    {
+        $targetDirectory = 'uploads/';
+        $targetFile = $targetDirectory . $file_to_upload;
+        if (move_uploaded_file($target_file, $targetFile)) {
+            echo 'File uploaded successfully.';
+        }
+    }
 
-    // {  
-    // $company;
-    // echo $company . '<br />';
-    // $company_foreign;
-    // echo $company_foreign . '<br />';
-    // $source_country;
-    // echo $source_country . '<br />';
-    // $analyz;
-    // echo $analyz . '<br />';
-    // $quantity;
-    // echo $quantity . '<br />';
-    // $place;
-    // echo $place . '<br />';
-    // $path;
-    // echo $path . '<br />';
-    // $transport;
-    // echo $transport . '<br />';
-    // $loading;
-    // echo $loading . '<br />';
-    // $contract_valid_date;
-    // echo $contract_valid_date . '<br />';
-    // $price_per_ton;
-    // echo $price_per_ton . '<br />';
-    // $contract_start_date;
-    // echo $contract_start_date . '<br />';
-    // $loading_date;
-    // echo $loading_date . '<br />';
-    // $extra_info;
-    // echo $extra_info . '<br />';
-    // $contract_scan_copy;
-    // echo $contract_scan_copy . '<br />';
-    // }
 
-    $query = "INSERT INTO contracts(company, company_foreign, source_country, analyz, quantity, place, path, transport, loading, contract_valid_date, price_per_ton, contract_start_date, loading_date, extra_info, contract_scan_copy, mark, type) VALUES ('$company' , '$company_foreign' , '$source_country' , '$analyz' , '$quantity' , '$place' , '$path' , '$transport' , '$loading' , '$contract_valid_date' , '$price_per_ton' , '$contract_start_date' , '$loading_date' , '$extra_info' , '$contract_scan_copy', '$mark', '$type') ";
+    $min = 1; // Minimum value
+    $max = 100000000000000000; // Maximum value
+    $randomNumber = rand($min, $max);
+
+    $contract_scan_copy_name_ext = pathinfo($_FILES['contract_scan_copy']['name'], PATHINFO_EXTENSION);
+    $contract_scan_copy_name = 'contract_scan_copy_' . $randomNumber . '.' . $contract_scan_copy_name_ext;
+
+    upload_file($contract_scan_copy_name, $_FILES['contract_scan_copy']['tmp_name']);
+
+
+
+
+    $query = "INSERT INTO contracts(company, company_foreign, source_country, analyz, quantity, place, path, transport, loading, contract_valid_date, price_per_ton, contract_start_date, loading_date, extra_info, contract_scan_copy, mark, type) VALUES ('$company' , '$company_foreign' , '$source_country' , '$analyz' , '$quantity' , '$place' , '$path' , '$transport' , '$loading' , '$contract_valid_date' , '$price_per_ton' , '$contract_start_date' , '$loading_date' , '$extra_info' , '$contract_scan_copy_name', '$mark', '$type') ";
 
 
     $result = mysqli_query($con, $query);
@@ -70,7 +57,7 @@ if (isset($_POST['submit'])) {
         // Query failed
         echo "Query failed: " . $con->error;
     }
-    
+
 
     // echo $result;
 

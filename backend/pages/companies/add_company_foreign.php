@@ -47,17 +47,17 @@ if (isset($_POST['submit'])) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $message = 'لطفا خپل ایمیلونه، د جواز نمبر او د شرکت نوم په دقیقه توګه ولیکئ';
-        echo "<SCRIPT> alert('$message')
-        window.location.replace('./../add_foreign_company.php');
-            </SCRIPT>";
+        // echo "<SCRIPT> alert('$message')
+        // window.location.replace('./../add_foreign_company.php');
+        //     </SCRIPT>";
     } else {
 
-        $query = "INSERT INTO companies_foreing(name, ceo, ceo_phone, dep, dep_phone, address, phone, email, license, license_date, country, license_copy) VALUES ('$name', '$ceo' , '$ceo_phone', '$dep', '$dep_phone' ,'$address', '$phone', '$email', '$license', '$license_date', '$country', '$license_copy_name')";
-        mysqli_query($con, $query);
-        $message = 'شرکت ثبت شو';
-        echo "<SCRIPT> alert('$message')
-        window.location.replace('./../add_foreign_company.php');
-            </SCRIPT>";
+        $query = "INSERT INTO companies_foreing(name, ceo, ceo_phone, dep, dep_phone, address, phone, email, license, license_date, country, license_copy) VALUES ('$name', '$ceo' , '$ceo_phone', '$dep', '$dep_phone' ,'$address', '$phone', '$email', '$license', '$license_date', '$country', '$license_copy')";
+        // mysqli_query($con, $query);
+        // $message = 'شرکت ثبت شو';
+        // echo "<SCRIPT> alert('$message')
+        // window.location.replace('./../add_foreign_company.php');
+        //     </SCRIPT>";
     }
 } else {
 }

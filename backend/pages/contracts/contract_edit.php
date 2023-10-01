@@ -25,47 +25,48 @@ if (isset($_POST['submit'])) {
     $extra_info = $_POST['extra_info'];
     $contract_scan_copy = $_FILES['contract_scan_copy']['name'] ? $_FILES['contract_scan_copy']['name'] : $pre_data[14];
 
-    // {  
-    // $company;
-    // echo $company . '<br />';
-    // $company_foreign;
-    // echo $company_foreign . '<br />';
-    // $source_country;
-    // echo $source_country . '<br />';
-    // $analyz;
-    // echo $analyz . '<br />';
-    // $quantity;
-    // echo $quantity . '<br />';
-    // $place;
-    // echo $place . '<br />';
-    // $path;
-    // echo $path . '<br />';
-    // $transport;
-    // echo $transport . '<br />';
-    // $loading;
-    // echo $loading . '<br />';
-    // $contract_valid_date;
-    // echo $contract_valid_date . '<br />';
-    // $price_per_ton;
-    // echo $price_per_ton . '<br />';
-    // $contract_start_date;
-    // echo $contract_start_date . '<br />';
-    // $loading_date;
-    // echo $loading_date . '<br />';
-    // $extra_info;
-    // echo $extra_info . '<br />';
-    // $contract_scan_copy;
-    // echo $contract_scan_copy . '<br />';
-    // }
+    
+    
+    function upload_file($file_to_upload, $target_file)
+    {
+        $targetDirectory = 'uploads/';
+        $targetFile = $targetDirectory . $file_to_upload;
+        if (move_uploaded_file($target_file, $targetFile)) {
+        }
+    }
 
-    $query = "UPDATE contracts SET company = '$company', company_foreign = '$company_foreign', source_country = '$source_country', analyz = '$analyz', quantity = '$quantity', place = '$place', path = '$path', transport = '$transport', loading = '$loading', contract_valid_date = '$contract_valid_date', price_per_ton = '$price_per_ton', contract_start_date = '$contract_start_date', loading_date = '$loading_date', extra_info = '$extra_info', contract_scan_copy= '$contract_scan_copy' WHERE id = $id";
+
+    $min = 1; // Minimum value
+    $max = 100000000000000000; // Maximum value
+    $randomNumber = rand($min, $max);
+    
+    if ($_FILES['contract_scan_copy']['name'] != '') {
+        $contract_scan_copy_name_ext = pathinfo($_FILES['contract_scan_copy']['name'], PATHINFO_EXTENSION);
+        $contract_scan_copy_name = 'contract_scan_copy_' . $randomNumber . '.' . $contract_scan_copy_name_ext;
+        
+        $query = "UPDATE `contracts` SET contract_scan_copy ='$contract_scan_copy_name' where id = $id";
+        echo $query;
+        mysqli_query($con, $query);
+
+        upload_file($contract_scan_copy_name, $_FILES['contract_scan_copy']['tmp_name']);
+        echo "File upload success";
+
+        $pre_file_path = 'uploads/'.$pre_data[15];
+        unlink($pre_file_path);
+    }
+    
+
+    
+
+
+    $query = "UPDATE contracts SET company = '$company', company_foreign = '$company_foreign', source_country = '$source_country', analyz = '$analyz', quantity = '$quantity', place = '$place', path = '$path', transport = '$transport', loading = '$loading', contract_valid_date = '$contract_valid_date', price_per_ton = '$price_per_ton', contract_start_date = '$contract_start_date', loading_date = '$loading_date', extra_info = '$extra_info' WHERE id = $id";
 
     $result = mysqli_query($con, $query);
     $var = $pre_data[0];
     header('location: ./../contract_details.php?id='.$var);
 
     if ($result) {
-        $message = 'شرکت تغیر شو';
+        $message = 'قرارداد تغیر شو';
         echo "<SCRIPT> alert('$message')
             window.location.replace('./../contract_details.php?id='.$var);
                 </SCRIPT>";

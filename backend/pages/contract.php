@@ -140,7 +140,7 @@ $data1 = mysqli_fetch_all($result1);
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">نوی قرارداد ثبتول </h1>
                 </div>
-                <div class="my-4 w-100" width="900" height="380">
+                <div class="my-4 w-100 px-3" width="900" height="380" style="background: #0c6663; color: white; ">
                     <div class="col-md-7 col-lg-12 col-md-12">
                         <form action="./contracts/contract_add.php" enctype="multipart/form-data" method="POST">
                             <div class="row g-3 my-5">
@@ -153,8 +153,8 @@ $data1 = mysqli_fetch_all($result1);
                                     <div class="col-sm-4">
                                         <span style="position: relative; top:12px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <hr>
+                                    <div class="col-sm-12" >
+                                        <hr style="border: 2px solid white">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -206,7 +206,7 @@ $data1 = mysqli_fetch_all($result1);
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="text" name="price_per_ton" class="form-control" id="lastName" placeholder="د في ټن قېمت" value="" required="">
+                                    <input type="number" name="price_per_ton" class="form-control" id="lastName" placeholder="د في ټن قېمت" value="" required="">
                                 </div>
 
                                 <div class="col-sm-4">
