@@ -4,6 +4,12 @@ include("./../../db/connection.php");
 include("./../../db/functions.php");
 
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $id = $_GET['id'];
 
 $pre_query = "SELECT *  FROM daily_form WHERE id = $id";
@@ -180,7 +186,7 @@ $data6 = mysqli_fetch_assoc($result6);
                                         <hr style="border: 2px solid white;">
                                     </div>
                                 </div>
-                                <input type="hidden" name="id"  value="<?php echo $pre_data['0'] ?>">
+                                <input type="hidden" name="id" value="<?php echo $pre_data['0'] ?>">
 
                                 <div class="col-sm-6">
                                     <select name="interior_country" id="getQuoteBtn" class="form-select form-select-lg" aria-label="Disabled select example">
@@ -197,7 +203,7 @@ $data6 = mysqli_fetch_assoc($result6);
                                         <option value="" id=""></option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="col-sm-4">
                                     <label for='dep_tazkira' class="form-label">منبع هېواد</label>
                                     <input type="text" name="country" class="form-control" id="country" value="<?php echo $pre_data['3'] ?>" required>
@@ -230,15 +236,15 @@ $data6 = mysqli_fetch_assoc($result6);
 
                                 <div class="col-sm-4">
                                     <label for='dep_tazkira' class="form-label">د ډالر ورځنۍ نرخ</label>
-                                    <input type="text" name="dolar_price" class="form-control" value="<?php echo $pre_data['9']?>" required>
+                                    <input type="text" name="dolar_price" class="form-control" value="<?php echo $pre_data['9'] ?>" required>
                                 </div>
                                 <div class="col-sm-4">
                                     <label for='dep_tazkira' class="form-label">د تېلو نړیوال نرخ</label>
-                                    <input type="text" name="oil_rate" class="form-control" value="<?php echo $pre_data['10']?>" required>
+                                    <input type="text" name="oil_rate" class="form-control" value="<?php echo $pre_data['10'] ?>" required>
                                 </div>
                                 <div class="col-sm-4">
                                     <label for='dep_tazkira' class="form-label">د ګاز نړیوال نرخ</label>
-                                    <input type="text" name="gas_rate" class="form-control" value="<?php echo $pre_data['11']?>" required>
+                                    <input type="text" name="gas_rate" class="form-control" value="<?php echo $pre_data['11'] ?>" required>
                                 </div>
 
                                 <div class="col-sm-4">
@@ -295,7 +301,7 @@ $data6 = mysqli_fetch_assoc($result6);
                             </div>
                             <hr class="">
 
-                            
+
                             <div class="col-sm-9 offset-2">
                                 <button class="w-100 btn btn-primary btn-lg" name="submit" type="submit">ثبتول</button>
                             </div>

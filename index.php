@@ -82,7 +82,7 @@
                         <input name="pwd" required type="password" class="form-control" id="floatingPassword" placeholder="پټ نوم">
                         <label for="floatingPassword">پټ نوم</label>
                     </div>
-                    <button class="btn btn-primary w-100 py-2 mt-2" type="submit">دننه کېډل</button>
+                    <button class="btn btn-primary w-100 py-2 mt-2" type="submit">دننه کېدل</button>
                     <p class="mt-5 mb-3 text-body-secondary">AOGC &copy; 2023</p>
                 </form>
             </main>

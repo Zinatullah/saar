@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
     // echo $result;
 
     if ($result) {
-        $message = 'شرکت ثبت شو';
+        $message = 'قرارداد ثبت شو';
         echo "<SCRIPT> alert('$message')
             window.location.replace('./../contract.php');
                 </SCRIPT>";

@@ -18,3 +18,17 @@ if (isset($_POST['remove'])) {
     
     
 }
+if (isset($_POST['remove1'])) {
+    $id = $_POST['remove1'];
+    $company = $_POST['company'];
+    $query = "DELETE FROM contracts WHERE id = $id";
+    $result = mysqli_query($con, $query);
+
+    if($result){
+        header("Location: ./../company_contracts_all.php?id=".$company);
+    }else{
+        header("Location: ./../company_contracts_all.php?id=".$company);
+    }
+    
+    
+}

@@ -25,10 +25,9 @@ if (isset($_POST['submit'])) {
         $targetDirectory = 'uploads/foreign/';
         $targetFile = $targetDirectory . $file_to_upload;
         if (move_uploaded_file($target_file, $targetFile)) {
-            echo 'File uploaded successfully.';
+            // echo 'File uploaded successfully.';
         }
     }
-
 
     $min = 1; // Minimum value
     $max = 100000000000000000; // Maximum value
@@ -39,25 +38,22 @@ if (isset($_POST['submit'])) {
 
     upload_file($license_copy_name, $_FILES['license_copy']['tmp_name']);
 
-
-
-
     $check_query = "Select * from companies_foreing where email = '$email'";
     $result = mysqli_query($con, $check_query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $message = 'لطفا خپل ایمیلونه، د جواز نمبر او د شرکت نوم په دقیقه توګه ولیکئ';
-        // echo "<SCRIPT> alert('$message')
-        // window.location.replace('./../add_foreign_company.php');
-        //     </SCRIPT>";
+        echo "<SCRIPT> alert('$message')
+        window.location.replace('./../add_foreign_company.php');
+            </SCRIPT>";
     } else {
 
-        $query = "INSERT INTO companies_foreing(name, ceo, ceo_phone, dep, dep_phone, address, phone, email, license, license_date, country, license_copy) VALUES ('$name', '$ceo' , '$ceo_phone', '$dep', '$dep_phone' ,'$address', '$phone', '$email', '$license', '$license_date', '$country', '$license_copy')";
-        // mysqli_query($con, $query);
-        // $message = 'شرکت ثبت شو';
-        // echo "<SCRIPT> alert('$message')
-        // window.location.replace('./../add_foreign_company.php');
-        //     </SCRIPT>";
+        $query = "INSERT INTO companies_foreing(name, ceo, ceo_phone, dep, dep_phone, address, phone, email, license, license_date, country, license_copy) VALUES ('$name', '$ceo' , '$ceo_phone', '$dep', '$dep_phone' ,'$address', '$phone', '$email', '$license', '$license_date', '$country', '$license_copy_name')";
+        mysqli_query($con, $query);
+        $message = 'شرکت ثبت شو';
+        echo "<SCRIPT> alert('$message')
+        window.location.replace('./../add_foreign_company.php');
+            </SCRIPT>";
     }
 } else {
 }

@@ -3,6 +3,12 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $query = "SELECT * FROM daily_form ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
@@ -127,7 +133,18 @@ $data = mysqli_fetch_all($result);
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">د نن ورځې ټول فورمونه</h1>
+                    <h1 class="h2"> ټولې فورمې</h1>
+                    <a href="./forms/excel.php">
+                        <span class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 1.2 1.2" version="1" xmlns="http://www.w3.org/2000/svg">
+                                <g fill="white">
+                                    <path d="M0.6 0.928 0.325 0.6h0.55zM0.5 0.1h0.2v0.1h-0.2zm0 0.15h0.2v0.1h-0.2z" />
+                                    <path d="M0.5 0.4h0.2v0.275h-0.2zM0.15 1h0.9v0.1H0.15z" />
+                                </g>
+                            </svg>
+                            اکسل فایل ترلاسه کول
+                        </span>
+                    </a>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
                     <div class="table-responsive small">
@@ -136,8 +153,9 @@ $data = mysqli_fetch_all($result);
                                 <tr>
                                     <th scope="col">داخلي شرکت</th>
                                     <th scope="col">منبع هېواد</th>
-                                    <th scope="col">د قرارداد آیډي</th>
-                                    <th scope="col">د قرارداد موده</th>
+                                    <th scope="col">نوعیت</th>
+                                    <th scope="col">مقدار</th>
+                                    <th scope="col">بندر</th>
                                     <th colspan="2" scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
                                 </tr>
                             </thead>
@@ -146,8 +164,9 @@ $data = mysqli_fetch_all($result);
                                     <tr>
                                         <td><?php echo $element[1] ?></td>
                                         <td><?php echo $element[3] ?></td>
-                                        <td><?php echo $element[2] ?></td>
-                                        <td><?php echo $element[10] ?></td>
+                                        <td><?php echo $element[5] ?></td>
+                                        <td><?php echo $element[6] ?></td>
+                                        <td><?php echo $element[8] ?></td>
                                         <td colspan="2" style="text-align: left;">
                                             <span>
                                                 <a href="./daily_form_details.php?id=<?php echo $element[0] ?>">

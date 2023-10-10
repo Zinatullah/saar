@@ -3,6 +3,12 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $id = $_GET['id'];
 $query = "SELECT * FROM `contracts` where id = $id";
 $result = mysqli_query($con, $query);
@@ -190,10 +196,10 @@ $data = mysqli_fetch_row($result);
                                         <span class="form-control">د قرارداد د پیل نېټه : <?php echo $data[12] ?></span>
                                     </div>
 
-                                    <div class="col-sm-12 col-md-12 col-lg-4 text-wrap">
+                                    <div class="col-sm-12 col-md-12 col-lg-8 text-wrap">
                                         <span class="form-control">نور جزئیات : <?php echo $data[14] ?></span>
                                     </div>
-                                    <div class="col-sm-12 col-md-12 col-lg-4">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
                                         <span class="form-control">
                                             <a href="./contracts/uploads/<?php echo $data[15] ?>" style="text-decoration: none">د قرارداد کافي :
                                                 <svg width="20px" height="20px" viewBox="0 0 1.2 1.2" version="1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48">

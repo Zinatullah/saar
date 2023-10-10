@@ -3,6 +3,11 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
 $query = "SELECT * FROM companies where block = 0 and suspend = 0 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
@@ -143,7 +148,7 @@ $data = mysqli_fetch_all($result);
                                                             <th style="border: 1px solid lightgray" scope="col">جواز نمبر</th>
                                                             <th style="border: 1px solid lightgray" scope="col">د مالک نوم</th>
                                                             <th style="border: 1px solid lightgray" scope="col">د معاون نوم</th>
-                                                            <th style="border: 1px solid lightgray" scope="col">نور معلومات</th>
+                                                            <th style="border: 1px solid lightgray" class="text-center" scope="col">نور معلومات</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -154,10 +159,14 @@ $data = mysqli_fetch_all($result);
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[2] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[14] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[17] ?></td>
-                                                                <td scope="col-2" style="border-left: 1px solid lightgray">
+
+                                                                <td scope="col-2" class="text-center" style="border-left: 1px solid lightgray">
                                                                     <a href="./company_details.php?id=<?php echo $value[0] ?>">
-                                                                        <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
+                                                                        <button type="button" class="btn btn-danger btn-sm px-3">
+                                                                            جزئیات
+                                                                        </button>
                                                                     </a>
+                                                                    <a href="./company_contracts_all.php?id=<?php echo $value[1] ?>" class="btn btn-success btn-sm">ټول قراردادونه</a>
                                                                 </td>
                                                             </tr>
                                                         <?php } ?>

@@ -3,6 +3,12 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $query = "SELECT * FROM `contracts` ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
@@ -137,37 +143,45 @@ $data = mysqli_fetch_all($result);
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th scope="col">آیډي</th>
                                     <th scope="col">داخلي شرکت</th>
                                     <th scope="col">بهرنۍ شرکت</th>
                                     <th scope="col">منبع هېواد</th>
                                     <th scope="col">د قرارداد موده</th>
-                                    <th scope="col">تاریخ</th>
-                                    <th scope="col">وخت</th>
-                                    <th scope="col" style="text-align: left; padding-left: 60px">نور معلومات</th>
+                                    <!-- <th scope="col">تاریخ</th> -->
+                                    <!-- <th scope="col">وخت</th> -->
+                                    <th scope="col" style="text-align: left;">نور معلومات</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($data as $element) { ?>
                                     <tr>
-                                        <td><?php echo $element[0] ?></td>
                                         <td><?php echo $element[1] ?></td>
                                         <td><?php echo $element[2] ?></td>
                                         <td><?php echo $element[3] ?></td>
                                         <td><?php echo $element[10] ?></td>
-                                        <?php $date = explode(' ', $element[18]); ?>
-                                        <td><?php echo $date[0] ?></td>
-                                        <?php $date = explode('.', $date[1]); ?>
-                                        <td><?php echo $date[0] ?></td>
+                                        <!-- <?php $date = explode(' ', $element[18]); ?> -->
+                                        <!-- <td><?php echo $date[0] ?></td> -->
+                                        <!-- <?php $date = explode('.', $date[1]); ?> -->
+                                        <!-- <td><?php echo $date[0] ?></td> -->
                                         <td style="text-align: left;">
+                                            <form action="./contracts/contract_remove.php" method="POST" style="display: inline;">
+                                                <input type="hidden" name="remove" value="<?php echo $element[0] ?>">
+                                                <button name="delete" type="submit" class="btn btn-sm " title="له منځه وړل">
+                                                    <svg fill="blue" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
                                             <span>
-                                                <a href="./contract_details.php?id=<?php echo $element[0] ?>">
-                                                    <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
+                                                <a href="./contract_details.php?id=<?php echo $element[0] ?>" title="نور معلومات">
+                                                    <!-- <button type="button" class="btn btn-success btn-sm"> -->
+                                                    <svg width="20" height="20" viewBox="0 0 1.2 1.2" version="1" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill="#2196F3" cx="24" cy="24" r="21" d="M1.125 0.6A0.525 0.525 0 0 1 0.6 1.125A0.525 0.525 0 0 1 0.075 0.6A0.525 0.525 0 0 1 1.125 0.6z" />
+                                                        <path fill="#fff" d="M0.55 0.55h0.1v0.275h-0.1z" />
+                                                        <path fill="#fff" cx="24" cy="16.5" r="2.5" d="M0.663 0.413A0.063 0.063 0 0 1 0.6 0.475A0.063 0.063 0 0 1 0.537 0.413A0.063 0.063 0 0 1 0.663 0.413z" />
+                                                    </svg>
+                                                    <!-- </button> -->
                                                 </a>
-                                                <form action="./contracts/contract_remove.php" method="POST" style="display: inline;">
-                                                    <input type="hidden" name="remove" value="<?php echo $element[0] ?>">
-                                                    <button name="delete" type="submit" class="btn btn-danger btn-sm px-3">لمنځه وړل</button>
-                                                </form>
                                             </span>
                                         </td>
                                         <td></td>

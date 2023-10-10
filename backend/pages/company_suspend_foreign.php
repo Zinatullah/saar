@@ -3,6 +3,11 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
 $query = "SELECT * FROM `companies_foreing` where suspend = 1 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
@@ -159,7 +164,7 @@ $data = mysqli_fetch_all($result);
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[11] ?></td>
                                                                 <td style="border: 1px solid lightgray"><?php echo $value[7] ?></td>
                                                                 <td scope="col-2" style="border: 1px solid lightgray">
-                                                                    <a href="./company_foreign_details_suspend.php?id=<?php echo $value[0]?>">
+                                                                    <a href="./company_foreign_details_suspend.php?id=<?php echo $value[0] ?>">
                                                                         <button type="button" class="btn btn-success btn-sm px-3">جزئیات</button>
                                                                     </a>
                                                                 </td>

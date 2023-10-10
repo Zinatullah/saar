@@ -3,12 +3,19 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
-$query1 = "SELECT * FROM `rate_dolar` LIMIT 7 ";
-$query2 = "SELECT * FROM `rate_oil` LIMIT 7 ";
-$query3 = "SELECT * FROM `rate_gas` LIMIT 7 ";
-$query4 = "SELECT * FROM `rate_condensate` LIMIT 7 ";
-$query5 = "SELECT * FROM `rate_custom` LIMIT 7 ";
-$query6 = "SELECT * FROM `rate_15_days` LIMIT 7 ";
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
+
+$query1 = "SELECT * FROM `rate_dolar` order by id desc LIMIT 7 ";
+$query2 = "SELECT * FROM `rate_oil` order by id desc LIMIT 7 ";
+$query3 = "SELECT * FROM `rate_gas` order by id desc LIMIT 7 ";
+$query4 = "SELECT * FROM `rate_condensate` order by id desc LIMIT 7 ";
+$query5 = "SELECT * FROM `rate_custom` order by id desc LIMIT 7 ";
+$query6 = "SELECT * FROM `rate_15_days` order by id desc LIMIT 7 ";
 
 $result = mysqli_query($con, $query1);
 $data1 = mysqli_fetch_all($result);

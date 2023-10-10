@@ -1,3 +1,34 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+include("./../../db/connection.php");
+include("./../../db/functions.php");
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+// Get the current date
+$currentDate = new DateTime();
+
+// Find the first day (Monday) of the current week
+$firstDayOfWeek = clone $currentDate;
+$firstDayOfWeek->modify('previous week')->modify('Saturday');
+
+// Get the dates of all the days in the current week
+$weekDays = array();
+for ($i = 0; $i < 7; $i++) {
+    $weekDays[] = $firstDayOfWeek->format('Y-m-d');
+    $firstDayOfWeek->modify('+1 day');
+}
+$date = $weekDays[0] . ' 00:00:01';
+
+$query = "SELECT port, sum(bandar_price) as total FROM `daily_form` where timestamp >= '$date' GROUP by port";
+
+$result = mysqli_query($con, $query);
+$data = mysqli_fetch_all($result);
+
+?>
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
@@ -114,15 +145,36 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">اونیز راپور</h1>
+                    <h1 class="h2"> د د اونۍ  راپور</h1>
+                    <a href="./graph_week.php">
+                        <span class="btn btn-primary">
+                            ګراف کتل
+                        </span>
+                    </a>
                 </div>
                 <div class="my-4 w-100" width="900" height="380">
-                    <h3>
-                        څار کاریال ته ښه راغلاست!
-                    </h3>
-                    <p>
-                        دا برخه تر کار لاندې ده
-                    </p>
+                    <hr style="border: 2px solid black">
+                    <div class="bd-example-snippet bd-code-snippet">
+                        <div class="bd-example m-0 border-0">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">بندر</th>
+                                        <th scope="col">مقدار</th>
+                                        <th scope="col">واحد</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($data as $element) { ?>
+                                        <tr>
+                                            <td><?php echo $element[0] ?></td>
+                                            <td><?php echo $element[1] ?></td>
+                                            <td>ټن</td>
+                                        <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

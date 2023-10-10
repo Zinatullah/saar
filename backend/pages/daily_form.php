@@ -3,6 +3,12 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $today = date("Y-m-d 0:00:01");
 $today_end = date("Y-m-d 23:59:59");
 
@@ -40,7 +46,6 @@ $query6 = "SELECT min(rate) as rate FROM rate_15_days where timestamp >= '$today
 $result6 = mysqli_query($con, $query6);
 $data6 = mysqli_fetch_assoc($result6);
 
-// echo time();
 
 ?>
 
@@ -191,56 +196,61 @@ $data6 = mysqli_fetch_assoc($result6);
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">منبع هېواد</label>
+                                    <label class="form-label">منبع هېواد</label>
                                     <input type="text" name="country" class="form-control" id="country" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">د جنس نوعیت</label>
+                                    <label class="form-label">د جنس نوعیت</label>
                                     <input type="text" name="type" class="form-control" id="type" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">مارکه</label>
+                                    <label class="form-label">مارکه</label>
                                     <input type="text" name="mark" class="form-control" id="mark" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">د جنس مقدار</label>
+                                    <label class="form-label">د جنس مقدار</label>
                                     <input type="text" name="quantity" class="form-control" id="quantity" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">د شرکت خرید في ټن</label>
+                                    <label class="form-label">د شرکت خرید في ټن</label>
                                     <input type="text" name="price" class="form-control" id="price" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">د ګمرک قېمت</label>
-                                    <input type="text" name="custom_price" class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data2['rate']?>" required>
+                                    <label class="form-label">بندر</label>
+                                    <input type="text" name="port" class="form-control" id="port" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">د ډالر ورځنۍ نرخ</label>
-                                    <input type="text" name="dolar_price" class="form-control" value="<?php echo $data3['rate']?>" required placeholder="دا برخه پخپله ډکیږي">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label for='' class="form-label">د تېلو نړیوال نرخ</label>
-                                    <input type="number" name="gas_rate" class="form-control" value="<?php echo $data4['rate']?>" required placeholder="دا برخه پخپله ډکیږي">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label for='' class="form-label">د ګاز نړیوال نرخ</label>
-                                    <input type="number" name="oil_rate" class="form-control" value="<?php echo $data5['rate']?>" required placeholder="دا برخه پخپله ډکیږي">
+                                    <label class="form-label">د ګمرک قېمت</label>
+                                    <input type="number" name="custom_price" class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data2['rate'] ?>" required style="text-align: right">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for='' class="form-label">د امارتي شرکت ۱۵ ورځنۍ قېمت</label>
-                                    <input type="text" name="fifteen_days" class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data6['rate']?>" required>
+                                    <label class="form-label">د ډالر ورځنۍ نرخ</label>
+                                    <input type="number" name="dolar_price" class="form-control" value="<?php echo $data3['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label">د تېلو نړیوال نرخ</label>
+                                    <input type="number" name="gas_rate" class="form-control" value="<?php echo $data4['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label">د ګاز نړیوال نرخ</label>
+                                    <input type="number" name="oil_rate" class="form-control" value="<?php echo $data5['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label">د امارتي شرکت ۱۵ ورځنۍ قېمت</label>
+                                    <input type="number" name="fifteen_days" class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data6['rate'] ?>" required style="text-align: right">
                                 </div>
 
                                 <div class="col-sm-12">
                                     <div class="col-sm-12">
-                                        <span style="position: relative; top:12px; font-size: 18px;" class="p-2 badge text-bg-danger">دغه برخه تاسو په خپله ډکه کړئ</span>
+                                        <span style="position: relative; top:12px; font-size: 18px;" class="p-2 badge text-bg-warning">دغه برخه تاسو ډکه کړئ</span>
                                     </div>
                                     <div class="col-sm-12" style="color: white">
                                         <hr class="" style="color: white; font-weight:500; border: 2px solid white;">
@@ -248,45 +258,58 @@ $data6 = mysqli_fetch_assoc($result6);
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="bandar_price" class="form-control" placeholder="بندري قیمت" value="" required>
+                                    <label class="form-label">پاتې مقدار</label>
+                                    <input type="number" style="text-align: right;" name="bandar_price" id="quantity_ID" max="<?php ?>" class="form-control" min='1' placeholder="-----" value="" required>
+                                    <div class="invalid-tooltip">
+                                        Please choose a unique and valid username.
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="custom" class="form-control" placeholder="ګمرکي محصول" value="" required>
+                                    <label class="form-label"> گمرکي محصول</label>
+                                    <input type="number" style="text-align: right;" name="custom" class="form-control" placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="transit" class="form-control" placeholder="ترانزیت" value="" required>
+                                    <label class="form-label">ترانزیت</label>
+                                    <input type="number" style="text-align: right;" name="transit" class="form-control" placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="tax" class="form-control" placeholder="مالیات" value="" required>
+                                    <label class="form-label">مالیات</label>
+                                    <input type="number" style="text-align: right;" name="tax" class="form-control" placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="fees" class="form-control" placeholder="فیسونه" value="" required>
+                                    <label class="form-label">فیسونه</label>
+                                    <input type="number" style="text-align: right;" name="fees" class="form-control" placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="transport_price" class="form-control" placeholder="ترانسپورتي مصارف" value="" required>
+                                    <label class="form-label">ترانسپورتي مصارف</label>
+                                    <input type="number" style="text-align: right;" name="transport_price" class="form-control" placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="service_fees" class="form-control" placeholder="(۰.۶) د حق الخدمت فیصدي" value="" required>
+                                    <label class="form-label">(۰.۶) د حق الخدمت فیصدي</label>
+                                    <input type="number" style="text-align: right;" name="service_fees" class="form-control" placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="material_price" class="form-control" placeholder="د جنس په اساس" value="" required>
+                                    <label class="form-label">د جنس په اساس</label>
+                                    <input type="number" style="text-align: right;" name="material_price" class="form-control" placeholder="-----" value="" required>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="number" style="text-align: right;" name="afs_price" class="form-control" placeholder="په افغانۍ" value="" required>
+                                    <label class="form-label">په افغانۍ</label>
+                                    <input type="number" style="text-align: right;" name="afs_price" class="form-control" placeholder="-----" value="" required>
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="number" style="text-align: right;" name="dol_price" class="form-control" placeholder="په ډالر" value="" required>
+                                    <label class="form-label">په ډالر</label>
+                                    <input type="number" style="text-align: right;" name="dol_price" class="form-control" placeholder="-----" value="" required>
                                 </div>
                             </div>
-                            <hr class="">
 
+                            <hr>
                             <div class="col-sm-9 offset-2">
                                 <button class="w-100 btn btn-primary btn-lg" name="submit" type="submit">ثبتول</button>
                             </div>
@@ -298,7 +321,7 @@ $data6 = mysqli_fetch_assoc($result6);
         </div>
     </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
-    <script src="./forms/countries.js"></script>
+    <script src="./forms/companies.js"></script>
 
 </body>
 

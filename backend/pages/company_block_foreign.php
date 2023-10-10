@@ -3,6 +3,11 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
 $query = "SELECT * FROM `companies_foreing` where block = 1 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);

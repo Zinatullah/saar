@@ -1,3 +1,15 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+include("./../../db/connection.php");
+include("./../../db/functions.php");
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+?>
+
+
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 

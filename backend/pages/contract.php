@@ -3,6 +3,12 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $query = "SELECT * FROM companies_foreing where block = 0 and suspend = 0 ";
 $result = mysqli_query($con, $query);
 $data = mysqli_fetch_all($result);
@@ -151,9 +157,9 @@ $data1 = mysqli_fetch_all($result1);
 
                                 <div class="col-sm-12">
                                     <div class="col-sm-4">
-                                        <span style="position: relative; top:12px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
+                                        <span style="position: relative; top:12px; font-size: 18px " class="p-2 badge text-bg-success">د شرکت اړوند معلومات</span>
                                     </div>
-                                    <div class="col-sm-12" >
+                                    <div class="col-sm-12">
                                         <hr style="border: 2px solid white">
                                     </div>
                                 </div>
@@ -240,10 +246,10 @@ $data1 = mysqli_fetch_all($result1);
 
                                 <div class="col-sm-4">
                                     <label for="lastName" class="form-label">د بار ګیری مهال وېش</label>
-                                    <input type="text" name="loading_date" id="Txt_Date" placeholder="وختونه انتخاب کړئ" style="cursor: pointer;"  class="form-control" required="">
+                                    <input type="text" name="loading_date" id="Txt_Date" placeholder="وختونه انتخاب کړئ" style="cursor: pointer;" class="form-control" required="">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">د قرارداد کافي</label>
+                                    <label for="lastName" class="form-label">د قرارداد کاپي</label>
                                     <input type="file" name="contract_scan_copy" class="form-control" id="lastName" placeholder="" value="" required="">
                                 </div>
 

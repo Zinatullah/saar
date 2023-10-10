@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+?>
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
@@ -123,20 +129,6 @@
                             څار کاریال ته ښه راغلاست!
                         </h3>
                         <hr class="my-3" style="border: 2px solid white">
-                        <!-- <div class="row g-3">
-                            <div class="col-sm-4 col-md-4 col-lg-4 p-3 rounded shadow-sm" style="background: #bc703a;">
-                                <h1 class="h6 mb-2">ټول داخلي شرکتونه</h1>
-                                <small class="" style="padding-top: 5px">Since 2011</small>
-                            </div>
-                            <div class=" col-sm-4 col-md-4 col-lg-4   p-3 rounded shadow-sm" style="background: #bc703a;">
-                                <h1 class="h6 mb-2">ټول بهرني شرکتونه</h1>
-                                <small class="" style="padding-top: 5px">Since 2011</small>
-                            </div>
-                            <div class=" p-3 rounded shadow-sm" style="background: #bc703a;">
-                                <h1 class="h6 mb-2">ټول قراردادونه</h1>
-                                <small class="" style="padding-top: 5px">Since 2011</small>
-                            </div> -->
-                        </div>
                     </div>
                 </div>
             </main>

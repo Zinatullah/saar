@@ -56,10 +56,10 @@ if (isset($_POST['submit'])) {
         upload_file($stamp_name, $_FILES['stamp']['tmp_name']);
         echo "File upload success";
 
-        $pre_file_path = 'uploads/domestic/'.$data[11];
+        $pre_file_path = 'uploads/domestic/' . $data[11];
         unlink($pre_file_path);
-
-    } else if ($_FILES['ceo_sign']['name'] != '') {
+    }
+    if ($_FILES['ceo_sign']['name'] != '') {
         $ceo_sign_name_ext = pathinfo($_FILES['ceo_sign']['name'], PATHINFO_EXTENSION);
         $ceo_sign_name = 'ceo_sign_' . $randomNumber . '.' . $ceo_sign_name_ext;
         $query = "UPDATE `companies` SET ceo_sign = '$ceo_sign_name' where id = $id";
@@ -67,10 +67,11 @@ if (isset($_POST['submit'])) {
 
         upload_file($ceo_sign_name, $_FILES['ceo_sign']['tmp_name']);
         echo "File upload success";
-        
-        $pre_file_path = 'uploads/domestic/'.$data[24];
+
+        $pre_file_path = 'uploads/domestic/' . $data[24];
         unlink($pre_file_path);
-    } else if ($_FILES['dep_sign']['name'] != '') {
+    }
+    if ($_FILES['dep_sign']['name'] != '') {
         $dep_sign_name_ext = pathinfo($_FILES['dep_sign']['name'], PATHINFO_EXTENSION);
         $dep_sign_name = 'dep_sign_' . $randomNumber . '.' . $dep_sign_name_ext;
         $query = "UPDATE `companies` SET dep_sign = '$dep_sign_name' where id = $id";
@@ -79,9 +80,10 @@ if (isset($_POST['submit'])) {
         upload_file($dep_sign_name, $_FILES['dep_sign']['tmp_name']);
         echo "File upload success";
 
-        $pre_file_path = 'uploads/domestic/'.$data[25];
+        $pre_file_path = 'uploads/domestic/' . $data[25];
         unlink($pre_file_path);
-    } else if ($_FILES['ceo_tazkira']['name'] != '') {
+    }
+    if ($_FILES['ceo_tazkira']['name'] != '') {
         $ceo_tazkira_name_ext = pathinfo($_FILES['ceo_tazkira']['name'], PATHINFO_EXTENSION);
         $ceo_tazkira_name = 'ceo_tazkira_' . $randomNumber . '.' . $ceo_tazkira_name_ext;
         $query = "UPDATE `companies` SET ceo_tazkira = '$ceo_tazkira_name' where id = $id";
@@ -90,9 +92,10 @@ if (isset($_POST['submit'])) {
         upload_file($ceo_tazkira_name, $_FILES['ceo_tazkira']['tmp_name']);
         echo "File upload success";
 
-        $pre_file_path = 'uploads/domestic/'.$data[26];
+        $pre_file_path = 'uploads/domestic/' . $data[26];
         unlink($pre_file_path);
-    } else if ($_FILES['dep_tazkira']['name'] != '') {
+    }
+    if ($_FILES['dep_tazkira']['name'] != '') {
         $dep_tazkira_name_ext = pathinfo($_FILES['dep_tazkira']['name'], PATHINFO_EXTENSION);
         $dep_tazkira_name = 'dep_tazkira_' . $randomNumber . '.' . $dep_tazkira_name_ext;
         $query = "UPDATE `companies` SET dep_tazkira = '$dep_tazkira_name' where id = $id";
@@ -101,7 +104,7 @@ if (isset($_POST['submit'])) {
         upload_file($dep_tazkira_name, $_FILES['dep_tazkira']['tmp_name']);
         echo "File upload success";
 
-        $pre_file_path = 'uploads/domestic/'.$data[27];
+        $pre_file_path = 'uploads/domestic/' . $data[27];
         unlink($pre_file_path);
     }
 

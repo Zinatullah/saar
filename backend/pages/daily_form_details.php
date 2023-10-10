@@ -4,6 +4,12 @@ include("./../../db/connection.php");
 include("./../../db/functions.php");
 
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../index.php");
+}
+
+
 $id = $_GET['id'];
 
 $pre_query = "SELECT *  FROM daily_form WHERE id = $id";
