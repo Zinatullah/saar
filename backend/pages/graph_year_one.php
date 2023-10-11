@@ -1,26 +1,16 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
-include("./../../db/connection.php");
-include("./../../db/functions.php");
-
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../index.php");
 }
-
-$date = date('Y-m-1');
-$query = "SELECT port, sum(bandar_price) as total FROM `daily_form` where timestamp >= '$date' GROUP by port";
-
-
-$result = mysqli_query($con, $query);
-$data = mysqli_fetch_all($result);
-
 ?>
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
 <head>
     <script src="./../assets/color-modes.js"></script>
+    <script src="./js/color-modes.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -114,6 +104,9 @@ $data = mysqli_fetch_all($result);
     </style>
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
+
+    <link href="./css/dashboard.rtl.css" rel="stylesheet">
+    <link href="./css/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 
 <body style="font-family: calibri !important;">
@@ -123,76 +116,83 @@ $data = mysqli_fetch_all($result);
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
                 <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
                     <div class="offcanvas-header">
-                        <!-- <h5 class="offcanvas-title" id="sidebarMenuLabel">د افغانستان نفت او ګاز شرکت</h5> -->
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="يغلق"></button>
                     </div>
                     <?php include_once('./../components/sidebard.php') ?>
                 </div>
             </div>
 
-
-
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <div class="d-flex navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <h1 class="h2"> د د میاشتې راپور</h1>
-                            </ul>
-                            <span class="d-flex" role="search">
-                                <a href="./graph_month.php" class="">
-                                    <span class="btn btn-primary">
-                                        ګراف کتل
-                                    </span>
-                                </a>
-                                <a href="./graph_month_one.php" class="mx-1">
-                                    <span class="btn btn-secondary">
-                                        ګراف کتل
-                                    </span>
-                                </a>
-                                <a href="./graph_month_two.php" class="mx-1">
-                                    <span class="btn btn-danger">
-                                        ګراف کتل
-                                    </span>
-                                </a>
-                                <a href="./graph_month_three.php" class="mx-1">
-                                    <span class="btn btn-primary">
-                                        ګراف کتل
-                                    </span>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </nav>
-                <div class="my-4 w-100" width="900" height="380">
-                    <hr style="border: 2px solid black">
-                    <div class="bd-example-snippet bd-code-snippet">
-                        <div class="bd-example m-0 border-0">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">بندر</th>
-                                        <th scope="col">مقدار</th>
-                                        <th scope="col">واحد</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($data as $element) { ?>
-                                        <tr>
-                                            <td><?php echo $element[0] ?></td>
-                                            <td><?php echo $element[1] ?></td>
-                                            <td>ټن</td>
-                                        <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">کلنۍ ګراف</h1>
+                </div>
+                <div class=" w-50" width="900" height="380" style="margin-right: 20%;">
+                    <main>
+                        <canvas id="myChart"></canvas>
+                    </main>
                 </div>
             </main>
         </div>
     </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
+    <script src="./js/chart.umd.js"></script>
+    <!-- <script src="./js/dashboard.js"></script> -->
 
+    <script>
+        // var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        // var yValues = [55, 49, 44, 24, 15];
+        var xValues = [];
+        var yValues = [];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            "#1eei32",
+        ];
+
+        (function() {
+            $.ajax({
+                url: "graph/year_graph.php", // PHP file that retrieves the data
+                type: "GET",
+                dataType: "json",
+                success: function(datas) {
+                    datas.forEach((element) => {
+                        console.log(element)
+                        xValues.push(element.port)
+                        yValues.push(element.total)
+
+                    });
+
+                    console.log(yValues)
+                    new Chart("myChart", {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "ټول ثبت شوي شرکتونه"
+                            }
+                        }
+                    });
+                },
+
+
+                error: function() {
+                    console.log("Error occurred while retrieving data.");
+                },
+            });
+        })();
+    </script>
 </body>
 
 </html>

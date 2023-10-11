@@ -102,6 +102,8 @@ if (!isset($_SESSION['user_id'])) {
     </style>
     <link href="./../assets/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./../assets/dashboard.rtl.css" rel="stylesheet">
+    <script src="./graph/home.js"></script>
+
 </head>
 
 <body style="font-family: calibri !important;">
@@ -122,19 +124,71 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">کورپاڼه</h1>
                 </div>
-                <div class="my-4 w-100 text-white" width="900" height="380" style="border-radius: 20px; background-color: #0c6663;">
+                <div class="my-4 w-100 text-white" width="900" height="380" style="border-radius: 20px;">
                     <div class="col-md-7 col-lg-12 col-md-12 p-3">
-
-                        <h3>
-                            څار کاریال ته ښه راغلاست!
-                        </h3>
-                        <hr class="my-3" style="border: 2px solid white">
+                        <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    <script src="./js/jquery.min.js"></script>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        // var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        // var yValues = [55, 49, 44, 24, 15];
+        var xValues = [];
+        var yValues = [];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            "#1eei32",
+        ];
+
+        (function() {
+            $.ajax({
+                url: "graph/home.php", // PHP file that retrieves the data
+                type: "GET",
+                dataType: "json",
+                success: function(datas) {
+                    datas.forEach((element) => {
+                        xValues.push(element.name)
+                        var cut = (datas.length)
+                        yValues.push(cut)
+
+                    });
+
+                    console.log(yValues)
+                    new Chart("myChart", {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "ټول ثبت شوي شرکتونه"
+                            }
+                        }
+                    });
+                },
+
+
+                error: function() {
+                    console.log("Error occurred while retrieving data.");
+                },
+            });
+        })();
+    </script>
 
 </body>
 

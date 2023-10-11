@@ -111,33 +111,30 @@ if (!isset($_SESSION['user_id'])) {
 
 <body style="font-family: calibri !important;">
     <?php include_once('./../components/header.php') ?>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-                <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-                    <div class="offcanvas-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="يغلق"></button>
+    <div class="row">
+        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="يغلق"></button>
+                </div>
+                <?php include_once('./../components/sidebard.php') ?>
+            </div>
+        </div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">ورځنۍ ګراف</h1>
+            </div>
+            <div class="my-4 w-100 text-white" width="900" height="380" style="border-radius: 20px; background-color: #ffffff;">
+                <div class="col-md-7 col-lg-12 col-md-12 p-3">
+                    <div class="row">
+                        <main>
+                            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+                        </main>
                     </div>
-                    <?php include_once('./../components/sidebard.php') ?>
                 </div>
             </div>
-
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">ورځنۍ ګراف</h1>
-                </div>
-                <div class="my-4 w-100 text-white" width="900" height="380" style="border-radius: 20px; background-color: #ffffff;">
-                    <div class="col-md-7 col-lg-12 col-md-12 p-3">
-                        <div class="row">
-                            <main>
-                                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-                            </main>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
+        </main>
     </div>
     <script src="./js/jquery.min.js"></script>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
@@ -181,6 +178,10 @@ if (!isset($_SESSION['user_id'])) {
                                 },
                                 options: {
                                     plugins: {
+                                        title: {
+                                            display: true,
+                                            text: "ورځنۍ راپور"
+                                        },
                                         legend: {
                                             display: false,
                                         },

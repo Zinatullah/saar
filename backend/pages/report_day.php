@@ -131,14 +131,50 @@ $data = mysqli_fetch_all($result);
             </div>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <div class="d-flex navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <h1 class="h2"> د نن ورځې راپور </h1>
+                            </ul>
+                            <span class="d-flex" role="search">
+                                <a href="./graph_daily.php" class="">
+                                    <span class="btn btn-primary">
+                                        ګراف کتل
+                                    </span>
+                                </a>
+                                <a href="./graph_daily_one.php" class="mx-1">
+                                    <span class="btn btn-secondary">
+                                        ګراف کتل
+                                    </span>
+                                </a>
+                                <a href="./graph_daily_two.php" class="mx-1">
+                                    <span class="btn btn-danger">
+                                        ګراف کتل
+                                    </span>
+                                </a>
+                                <a href="./graph_daily_three.php" class="mx-1">
+                                    <span class="btn btn-primary">
+                                        ګراف کتل
+                                    </span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2"> د نن ورځې راپور </h1>
-                    <a href="./graph_daily.php">
+                    <a href="./graph_daily.php" class="d-flex">
                         <span class="btn btn-primary">
                             ګراف کتل
                         </span>
                     </a>
-                </div>
+                    <a href="./graph_daily.php" class="d-flex ">
+                        <span class="btn btn-primary">
+                            ګراف کتل
+                        </span>
+                    </a>
+                </div> -->
                 <div class="my-4 w-100" width="900" height="380">
                     <hr style="border: 2px solid black">
                     <div class="bd-example-snippet bd-code-snippet">

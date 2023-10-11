@@ -225,6 +225,11 @@ $data6 = mysqli_fetch_assoc($result6);
                                     <input type="text" name="port" class="form-control" id="port" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
+                                <!-- <div class="col-sm-4">
+                                    <label class="form-label">بندر</label>
+                                    <input type="text" name="port" class="form-control" id="port" placeholder="دا برخه پخپله ډکیږي" value="" required>
+                                </div> -->
+
                                 <div class="col-sm-4">
                                     <label class="form-label">د ګمرک قېمت</label>
                                     <input type="number" name="custom_price" class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data2['rate'] ?>" required style="text-align: right">
@@ -260,9 +265,6 @@ $data6 = mysqli_fetch_assoc($result6);
                                 <div class="col-sm-4">
                                     <label class="form-label">پاتې مقدار</label>
                                     <input type="number" style="text-align: right;" name="bandar_price" id="quantity_ID" max="<?php ?>" class="form-control" min='1' placeholder="-----" value="" required>
-                                    <div class="invalid-tooltip">
-                                        Please choose a unique and valid username.
-                                    </div>
                                 </div>
 
                                 <div class="col-sm-4">
@@ -321,7 +323,7 @@ $data6 = mysqli_fetch_assoc($result6);
         </div>
     </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
-    <script src="./forms/companies.js"></script>
+    <script src="./forms/companiess.js"></script>
 
 </body>
 

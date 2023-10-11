@@ -82,7 +82,6 @@ $(document).ready(function () {
         $.each(response, function (index, data) {
           $("#quantity_ID").attr("placeholder", data);
           $("#quantity_ID").attr("max", data);
-          // $("#quantity_ID").val(data);
         });
       },
       error: function (xhr, status, error) {
