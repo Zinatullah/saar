@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
 
     echo $id;
 
-    $query = "DELETE FROM `rate_oil` WHERE id = $id";
+    $query = "DELETE FROM `rate_diesel` WHERE id = $id";
     $result = mysqli_query($con, $query);
     if ($result) {
         header('location: ./../daily_importance.php');

@@ -8,10 +8,10 @@ if (isset($_GET['id'])) {
 
     echo $id;
 
-    $query = "DELETE FROM `rate_condensate` WHERE id = $id";
+    $query = "DELETE FROM `service_tax` WHERE id = $id";
     $result = mysqli_query($con, $query);
     if ($result) {
-        header('location: ./../daily_importance.php');
+        header('location: ./../long_term_importance.php');
     } else {
         $errorMessage = mysqli_error($con);
         echo "Query error: " . $errorMessage;

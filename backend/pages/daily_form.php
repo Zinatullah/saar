@@ -31,20 +31,27 @@ $query3 = "SELECT min(rate) as rate FROM rate_dolar where timestamp >= '$today'"
 $result3 = mysqli_query($con, $query3);
 $data3 = mysqli_fetch_assoc($result3);
 $data33 = mysqli_fetch_all($result3);
-// print_r($result3['num_rows']);s
 
-$query4 = "SELECT min(rate) as rate FROM rate_oil where timestamp >= '$today' ";
+$query4 = "SELECT min(rate) as rate FROM rate_paterol where timestamp >= '$today' ";
 $result4 = mysqli_query($con, $query4);
 $data4 = mysqli_fetch_assoc($result4);
+
+$query8 = "SELECT min(rate) as rate FROM rate_diesel where timestamp >= '$today' ";
+$result8 = mysqli_query($con, $query8);
+$data8 = mysqli_fetch_assoc($result8);
 
 $query5 = "SELECT min(rate) as rate FROM rate_gas where timestamp >= '$today'";
 $result5 = mysqli_query($con, $query5);
 $data5 = mysqli_fetch_assoc($result5);
 // print_r($result3);
 
-$query6 = "SELECT min(rate) as rate FROM rate_15_days where timestamp >= '$today'";
+$query6 = "SELECT rate FROM rate_15_days order by id desc limit 1";
 $result6 = mysqli_query($con, $query6);
 $data6 = mysqli_fetch_assoc($result6);
+
+$query7 = "SELECT rate FROM service_tax order by id desc limit 1";
+$result7 = mysqli_query($con, $query7);
+$data7 = mysqli_fetch_assoc($result7);
 
 
 ?>
@@ -225,10 +232,15 @@ $data6 = mysqli_fetch_assoc($result6);
                                     <input type="text" name="port" class="form-control" id="port" placeholder="دا برخه پخپله ډکیږي" value="" required>
                                 </div>
 
-                                <!-- <div class="col-sm-4">
-                                    <label class="form-label">بندر</label>
-                                    <input type="text" name="port" class="form-control" id="port" placeholder="دا برخه پخپله ډکیږي" value="" required>
-                                </div> -->
+                                <div class="col-sm-4">
+                                    <label class="form-label"> د جنس پاتې مقدار</label>
+                                    <input type="number" id="remain_quantity" class="form-control" placeholder="دا برخه پخپله ډکیږي" required style="text-align: right">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label"> مخکې وارد شوی مقدار</label>
+                                    <input type="number" id="imported_quantity" class="form-control" placeholder="دا برخه پخپله ډکیږي" required style="text-align: right">
+                                </div>
 
                                 <div class="col-sm-4">
                                     <label class="form-label">د ګمرک قېمت</label>
@@ -237,20 +249,31 @@ $data6 = mysqli_fetch_assoc($result6);
 
                                 <div class="col-sm-4">
                                     <label class="form-label">د ډالر ورځنۍ نرخ</label>
-                                    <input type="number" name="dolar_price" class="form-control" value="<?php echo $data3['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
+                                    <input type="number" id='dolar_price' name="dolar_price" class="form-control" value="<?php echo $data3['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label">د ډیزل نړیوال نرخ</label>
+                                    <input type="number" name="gas_rate" class="form-control" value="<?php echo $data8['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="form-label">د تېلو نړیوال نرخ</label>
+                                    <label class="form-label">د پطرول نړیوال نرخ</label>
                                     <input type="number" name="gas_rate" class="form-control" value="<?php echo $data4['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
                                 </div>
+
+
                                 <div class="col-sm-4">
                                     <label class="form-label">د ګاز نړیوال نرخ</label>
                                     <input type="number" name="oil_rate" class="form-control" value="<?php echo $data5['rate'] ?>" required placeholder="دا برخه پخپله ډکیږي" style="text-align: right">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label class="form-label">د امارتي شرکت ۱۵ ورځنۍ قېمت</label>
-                                    <input type="number" name="fifteen_days" class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data6['rate'] ?>" required style="text-align: right">
+                                    <label class="form-label"> ۱۵ ورځنۍ قېمت</label>
+                                    <input type="number" name="fifteen_days" class="form-control" id="fifteen_days" value="<?php echo $data6['rate'] ?>" placeholder="دا برخه پخپله ډکیږي" required style="text-align: right">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label">د حق الخدمت فیصدي</label>
+                                    <input type="text" name="service_fees" id='service_fees' class="form-control" placeholder="دا برخه پخپله ډکیږي" value="<?php echo $data7['rate'] ?>" required style="text-align: right">
                                 </div>
 
                                 <div class="col-sm-12">
@@ -263,51 +286,46 @@ $data6 = mysqli_fetch_assoc($result6);
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label class="form-label">پاتې مقدار</label>
-                                    <input type="number" style="text-align: right;" name="bandar_price" id="quantity_ID" max="<?php ?>" class="form-control" min='1' placeholder="-----" value="" required>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="form-label"> گمرکي محصول</label>
-                                    <input type="number" style="text-align: right;" name="custom" class="form-control" placeholder="-----" value="" required>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="form-label">ترانزیت</label>
-                                    <input type="number" style="text-align: right;" name="transit" class="form-control" placeholder="-----" value="" required>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="form-label">مالیات</label>
-                                    <input type="number" style="text-align: right;" name="tax" class="form-control" placeholder="-----" value="" required>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="form-label">فیسونه</label>
-                                    <input type="number" style="text-align: right;" name="fees" class="form-control" placeholder="-----" value="" required>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="form-label">ترانسپورتي مصارف</label>
-                                    <input type="number" style="text-align: right;" name="transport_price" class="form-control" placeholder="-----" value="" required>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label class="form-label">(۰.۶) د حق الخدمت فیصدي</label>
-                                    <input type="number" style="text-align: right;" name="service_fees" class="form-control" placeholder="-----" value="" required>
+                                    <label class="form-label">اوسنی مقدار</label>
+                                    <input type="number" style="text-align: right;" name="bandar_price" id="quantity_ID" class="form-control" min='1' placeholder="-----" value="" required>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <label class="form-label">د جنس په اساس</label>
-                                    <input type="number" style="text-align: right;" name="material_price" class="form-control" placeholder="-----" value="" required>
+                                    <input id="material_price" type="text" style="text-align: right;" name="material_price" class="form-control" placeholder="-----" value="" required>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="form-label">په افغانۍ</label>
-                                    <input type="number" style="text-align: right;" name="afs_price" class="form-control" placeholder="-----" value="" required>
+                                    <input id="afs_price" type="text" style="text-align: right;" name="afs_price" class="form-control" placeholder="-----" value="" required>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-4">
                                     <label class="form-label">په ډالر</label>
-                                    <input type="number" style="text-align: right;" name="dol_price" class="form-control" placeholder="-----" value="" required>
+                                    <input id="dol_price" type="text" style="text-align: right;" name="dol_price" class="form-control" placeholder="-----" value="" required>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label"> گمرکي محصول</label>
+                                    <input type="number" style="text-align: right;" name="custom" class="form-control" placeholder="حتمي نه دی" value="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label">ترانزیت</label>
+                                    <input type="number" style="text-align: right;" name="transit" class="form-control" placeholder="حتمي نه دی" value="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label">مالیات</label>
+                                    <input type="number" style="text-align: right;" name="tax" class="form-control" placeholder="حتمي نه دی" value="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label">فیسونه</label>
+                                    <input type="number" style="text-align: right;" name="fees" class="form-control" placeholder="حتمي نه دی" value="">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="form-label">ترانسپورتي مصارف</label>
+                                    <input type="number" style="text-align: right;" name="transport_price" class="form-control" placeholder="حتمي نه دی" value="">
                                 </div>
                             </div>
 

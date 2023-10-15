@@ -4,10 +4,10 @@ include("./../../../db/connection.php");
 include("./../../../db/functions.php");
 
 
-if (isset($_POST['condensate_rate'])) {
-    $condensate_rate = $_POST['condensate_rate'];
+if (isset($_POST['rate_paterol'])) {
+    $rate_paterol = $_POST['rate_paterol'];
 
-    $query = "INSERT INTO rate_condensate ( rate ) VALUES ($condensate_rate)";
+    $query = "INSERT INTO rate_paterol ( rate ) VALUES ($rate_paterol)";
     $result = mysqli_query($con, $query);
     if ($result) {
         header('location: ./../daily_importance.php');

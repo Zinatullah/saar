@@ -3,15 +3,20 @@ header('Content-Type: text/html; charset=utf-8');
 include("./../../../db/connection.php");
 include("./../../../db/functions.php");
 
+echo "SUccss";
 
-if (isset($_POST['service_rate'])) {
-    $service_rate = $_POST['service_rate'];
+if (isset($_POST['diesel_rate'])) {
+    $diesel_rate = $_POST['diesel_rate'];
 
-    $query = "INSERT INTO rate_15_days ( rate ) VALUES ($service_rate)";
+    echo $diesel_rate;
+
+    $query = "INSERT INTO rate_diesel ( rate ) VALUES ($diesel_rate)";
     $result = mysqli_query($con, $query);
     if ($result) {
-        header('location: ./../long_term_importance.php');
 
+        header('location: ./../daily_importance.php');
+        
+        
         // $message = 'شرکت ثبت شو';
         // echo "<SCRIPT> alert('$message')
         // window.location.replace('./../daily_importance.php');

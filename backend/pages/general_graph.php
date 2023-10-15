@@ -2,22 +2,38 @@
 header('Content-Type: text/html; charset=utf-8');
 include("./../../db/connection.php");
 include("./../../db/functions.php");
-
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../index.php");
 }
 
-$date = date('Y-m-d 00:00:01');
-$query = "SELECT port, sum(bandar_price) as total FROM `daily_form` where timestamp >= '$date' GROUP by port";
+if (isset($_POST['submit'])) {
+    $ports = $_POST['port'];
+    $type = $_POST['type'];
+    $type1 = $_POST['type1'];
+    $graph = $_POST['graph'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    // echo $start_date. ' ' . $end_date;
+    $valueList = implode("', '", $ports);
 
-$result = mysqli_query($con, $query);
-$data = mysqli_fetch_all($result);
+    $query = "SELECT port, type, sum($type1) FROM daily_form WHERE port IN ('$valueList') and type = '$type' and timestamp between '$start_date' and '$end_date' group by port";
+    // echo $query;
+    $result = mysqli_query($con, $query);
+    $data = mysqli_fetch_all($result);
 
-$ports = "select port from daily_form group by port";
-$result1 = mysqli_query($con, $ports);
-$data1 = mysqli_fetch_all($result1);
 
+    $data_ports = [];
+    $data_values = [];
+
+    foreach ($data as $element) {
+        array_push($data_ports, $element[0]);
+        array_push($data_values, $element[2]);
+    }
+
+    $json_data_ports = json_encode($data_ports);
+    $json_data_values = json_encode($data_values);
+}
 
 ?>
 <!doctype html>
@@ -139,9 +155,9 @@ $data1 = mysqli_fetch_all($result1);
                     <div class="container-fluid">
                         <div class="d-flex navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <h1 class="h2"> د نن ورځې راپور </h1>
+                                <h1 class="h2"> عمومي راپور </h1>
                             </ul>
-                            <span class="d-flex" role="search">
+                            <!-- <span class="d-flex" role="search">
                                 <a href="./graph_daily.php" class="">
                                     <span class="btn btn-primary">
                                         ګراف کتل
@@ -162,23 +178,10 @@ $data1 = mysqli_fetch_all($result1);
                                         ګراف کتل
                                     </span>
                                 </a>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                 </nav>
-                <!-- <div class="d-flex justify-content-around flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"> د نن ورځې راپور </h1>
-                    <a href="./graph_daily.php" class="d-flex">
-                        <span class="btn btn-primary">
-                            ګراف کتل
-                        </span>
-                    </a>
-                    <a href="./graph_daily.php" class="d-flex ">
-                        <span class="btn btn-primary">
-                            ګراف کتل
-                        </span>
-                    </a>
-                </div> -->
 
                 <div class="my-4 w-100" width="900" height="380">
                     <hr style="border: 2px solid black">
@@ -189,8 +192,22 @@ $data1 = mysqli_fetch_all($result1);
                                     <tr>
                                         <th scope="col">بندر</th>
                                         <th scope="col">مقدار</th>
-                                        <th scope="col">واحد</th>
-                                        <!-- <th scope="col" class="text-center">جزئیات</th> -->
+                                        <th scope="col">
+                                            <?php
+                                            if ($type1 == 'afs_price') {
+                                                echo 'په افغانی';
+                                            } else if ($type1 == 'dol_price') {
+                                                echo 'په ډالر';
+                                            } else if ($type1 == 'service_fees') {
+                                                echo 'خدمات';
+                                            } else {
+                                                echo 'مقدار';
+                                            }
+
+                                            ?>
+                                        </th>
+                                        <!-- <th scope="col"><?php echo $type1 ?></th> -->
+                                        <th scope="col" class="text-center">تاریخ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -198,9 +215,11 @@ $data1 = mysqli_fetch_all($result1);
                                         <tr>
                                             <td><?php echo $element[0] ?></td>
                                             <td><?php echo $element[1] ?></td>
-                                            <td>ټن</td>
+                                            <td><?php echo $element[2] ?></td>
+                                            <td class="text-center"><?php echo $start_date . ' _________ ' . $end_date ?></td>
+                                            <!-- <td>ټن</td> -->
                                             <!-- <td class="text-center">
-                                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                                         <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
                                                     </svg>
@@ -212,12 +231,17 @@ $data1 = mysqli_fetch_all($result1);
                         </div>
                     </div>
                 </div>
+
+                <div class=" w-50" width="900" height="380" style="margin-right: 20%;">
+                    <main>
+                        <canvas id="myChart"></canvas>
+                    </main>
             </main>
         </div>
     </div>
 
     <!-- Modal -->
-    <!-- <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
+    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" dir="" style="display: block; background: #1E3050; color: white;">
@@ -233,6 +257,7 @@ $data1 = mysqli_fetch_all($result1);
                 <form action="./general_graph.php" method="POST">
                     <div class="modal-body">
 
+                        <!-- PORT -->
                         <div>
                             <h4>
                                 <span class="mt-3 badge w-25" style="background-color: #1E3050;">بندر </span>
@@ -252,7 +277,7 @@ $data1 = mysqli_fetch_all($result1);
                             </div>
                         </div>
 
-
+                        <!-- TYPE -->
                         <div>
                             <h4>
                                 <span class="mt-3 badge w-25" style="background-color: #1E3050;">نوعیت</span>
@@ -276,7 +301,7 @@ $data1 = mysqli_fetch_all($result1);
                         </div>
 
 
-
+                        <!--  -->
                         <div>
                             <h4>
                                 <span class="mt-3 badge w-25" style="background-color: #1E3050;">نوعیت</span>
@@ -303,7 +328,7 @@ $data1 = mysqli_fetch_all($result1);
                             </div>
                         </div>
 
-
+                        <!-- GRAPH -->
                         <div>
                             <h4>
                                 <span class="mt-3 badge w-25" style="background-color: #1E3050;">د ګراف ډول</span>
@@ -315,22 +340,22 @@ $data1 = mysqli_fetch_all($result1);
                                     <label class="form-check-label" for="line_graph">لاین ګراف</label>
                                 </span>
                                 <span>
-                                    <input name="graph" value="bar" class="form-check-input" type="radio" role="switch" id="pie_chart" required>
+                                    <input name="graph" value="graph_barchart" class="form-check-input" type="radio" role="switch" id="pie_chart" required>
                                     <label class="form-check-label" for="pie_chart">بار چارت</label>
                                 </span>
                                 <span>
-                                    <input name="graph" value="pie" class="form-check-input" type="radio" role="switch" id="barchart" required>
+                                    <input name="graph" value="graph_piechart" class="form-check-input" type="radio" role="switch" id="barchart" required>
                                     <label class="form-check-label" for="barchart">پای چارت</label>
                                 </span>
                                 <span>
-                                    <input name="graph" value="doughnut" class="form-check-input" type="radio" role="switch" id="Doughnut" required>
+                                    <input name="graph" value="graph_doughnut" class="form-check-input" type="radio" role="switch" id="Doughnut" required>
                                     <label class="form-check-label" for="Doughnut">ډوناټ</label>
                                 </span>
                                 <br>
                             </div>
                         </div>
 
-
+                        <!-- Date -->
                         <div>
                             <h4>
                                 <span class="mt-3 badge w-25" style="background-color: #1E3050;">تاریخ</span>
@@ -360,10 +385,70 @@ $data1 = mysqli_fetch_all($result1);
                 </form>
             </div>
         </div>
-    </div> -->
+    </div>
     <script src="./../assets/bootstrap.bundle.min.js"></script>
-    <!-- <script src="./"></script> -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/chart.umd.js"></script>
 
+
+    <script>
+        // var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        // var yValues = [55, 49, 44, 24, 15];
+        var xValues = <?php echo $json_data_ports; ?>;
+        var yValues = <?php echo $json_data_values; ?>;
+        console.log(xValues)
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            "#1eei32",
+        ];
+
+        (function() {
+
+            new Chart("myChart", {
+                type: "<?php echo $graph ?>",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: false,
+                        text: "ټول ثبت شوي شرکتونه"
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+
+            // $.ajax({
+            //     url: "graph/daily_graph.php", // PHP file that retrieves the data
+            //     type: "GET",
+            //     dataType: "json",
+            //     success: function(datas) {
+            //         datas.forEach((element) => {
+            //             console.log(element)
+            //             xValues.push(element.port)
+            //             yValues.push(element.total)
+
+            //         });
+
+            //     },
+
+
+            //     error: function() {
+            //         console.log("Error occurred while retrieving data.");
+            //     },
+            // });
+        })();
+    </script>
 </body>
 
 </html>

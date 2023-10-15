@@ -8,27 +8,35 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../../index.php");
 }
 
-$query1 = "SELECT * FROM `rate_dolar` order by id desc LIMIT 7 ";
-$query2 = "SELECT * FROM `rate_diesel` order by id desc LIMIT 7 ";
-$query3 = "SELECT * FROM `rate_gas` order by id desc LIMIT 7 ";
-$query4 = "SELECT * FROM `rate_paterol` order by id desc LIMIT 7 ";
-$query5 = "SELECT * FROM `rate_custom` order by id desc LIMIT 7 ";
+$query1 = "SELECT * FROM `service_tax` order by id desc LIMIT 7 ";
+// $query2 = "SELECT * FROM `rate_oil` order by id desc LIMIT 7 ";
+// $query3 = "SELECT * FROM `rate_gas` order by id desc LIMIT 7 ";
+// $query4 = "SELECT * FROM `rate_condensate` order by id desc LIMIT 7 ";
+// $query5 = "SELECT * FROM `rate_custom` order by id desc LIMIT 7 ";
+// $query6 = "SELECT * FROM `rate_15_days` order by id desc LIMIT 7 ";
 
 $result = mysqli_query($con, $query1);
 $data1 = mysqli_fetch_all($result);
 
-$result2 = mysqli_query($con, $query2);
-$data2 = mysqli_fetch_all($result2);
+$query6 = "SELECT * FROM `rate_15_days` order by id desc LIMIT 7 ";
 
-$result3 = mysqli_query($con, $query3);
-$data3 = mysqli_fetch_all($result3);
+$result6 = mysqli_query($con, $query6);
+$data6 = mysqli_fetch_all($result6);
 
-$result4 = mysqli_query($con, $query4);
-$data4 = mysqli_fetch_all($result4);
+// $result2 = mysqli_query($con, $query2);
+// $data2 = mysqli_fetch_all($result2);
 
-$result5 = mysqli_query($con, $query5);
-$data5 = mysqli_fetch_all($result5);
+// $result3 = mysqli_query($con, $query3);
+// $data3 = mysqli_fetch_all($result3);
 
+// $result4 = mysqli_query($con, $query4);
+// $data4 = mysqli_fetch_all($result4);
+
+// $result5 = mysqli_query($con, $query5);
+// $data5 = mysqli_fetch_all($result5);
+
+// $result6 = mysqli_query($con, $query6);
+// $data6 = mysqli_fetch_all($result6);
 
 $con->close();
 
@@ -156,28 +164,30 @@ $con->close();
                 </div>
                 <div class="py-3 w-100" width="900" height="380" style="background: #1f0a48">
                     <h3 class="text-center text-light">
-                        ورځني نرخونه باید هره ورځ ثبت کړل شي
+                        هغه نرخونه چې ژر نه تغیریږي
                     </h3>
                     <hr style="border: 2px solid white">
                     <div class="px-3 row">
                         <div class="g-0">
                             <div class="row">
-                                <!-- Dollar -->
-                                <main class="col-2 col-md-4 col-sm-6 col-lg-2 form-signin ">
+                                <main class="col-2 col-md-6 col-sm-6 col-lg-6 form-signin ">
                                     <div>
                                         <h6 class="text-center my-2">
-                                            <span class="text-light text-center">د ډالر نرخ</span>
+                                            <span class="text-light text-center">
+                                                <h4>
+                                                    د حق الخدمت فیصدي
+                                                </h4>
+                                            </span>
                                         </h6>
-                                        <form action="./daily_rates/dolar.php" method="POST" class="card p-1">
+                                        <form action="./daily_rates/service_tax.php" method="POST" class="card p-1">
                                             <div class="input-group">
-                                                <input type="number" name="dolar_rate" class="form-control" placeholder="-------" required>
+                                                <input type="text" name="service_tax" class="form-control" placeholder="-------" required>
                                                 <button type="submit" class="btn btn-secondary">ثبتول</button>
                                             </div>
                                         </form>
                                         <ul class="list-group mt-1">
-
                                             <li class="list-group-item d-flex justify-content-between">
-                                                <span style="padding-right: 10px;">
+                                                <span style="padding-right: 60px;">
                                                     <strong>
                                                         تاریخ
                                                     </strong>
@@ -193,12 +203,57 @@ $con->close();
 
                                                     $dateString = $date[0];
                                                     $dateFormatted = date("n/j/y", strtotime($dateString));
-
-
                                                     ?>
 
+                                                    <span style="position: absolute; top: 2; right: 10; cursor: pointer;">
+                                                        <a href="./daily_rates/remove_service_tax.php?id=<?php echo $element[0] ?>">
+                                                            <svg fill="red" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
+                                                            </svg>
+                                                        </a>
+                                                    </span>
+                                                    <span style="padding-right: 50px;"><?php echo $dateFormatted ?></span>
+                                                    <strong><?php echo $element[1] . '%' ?></strong>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </main>
+
+
+                                <main class="form-signin col-sm-6 col-md-6 col-lg-6 col-md-4">
+                                    <div>
+                                        <h6 class=" text-center my-2">
+                                            <h4 class="text-center">
+                                                <span class="text-light text-center">۱۵ ورځنی قیمت</span>
+                                            </h4>
+                                        </h6>
+                                        <form action="./daily_rates/service.php" method="POST" class="card p-1">
+                                            <div class="input-group">
+                                                <input type="number" name="service_rate" class="form-control" placeholder="-------" required>
+                                                <button type="submit" class="btn btn-secondary">ثبتول</button>
+                                            </div>
+                                        </form>
+                                        <ul class="list-group mt-1">
+
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span style="padding-right: 10px;">
+                                                    <strong>
+                                                        تاریخ
+                                                    </strong>
+                                                </span>
+                                                <strong>نرخ</strong>
+                                            </li>
+                                            <?php foreach ($data6 as $element) { ?>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <?php
+                                                    $date = $element[2];
+                                                    $date = explode(' ', $date);
+                                                    $dateString = $date[0];
+                                                    $dateFormatted = date("n/j/y", strtotime($dateString));
+                                                    ?>
                                                     <span style="position: absolute; top: 2; right: 0; cursor: pointer;">
-                                                        <a href="./daily_rates/remove_dolar.php?id=<?php echo $element[0] ?>">
+                                                        <a href="./daily_rates/remove_service.php?id=<?php echo $element[0] ?>">
                                                             <svg fill="red" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
                                                             </svg>
@@ -211,15 +266,15 @@ $con->close();
                                         </ul>
                                     </div>
                                 </main>
-<!-- Diesel -->
-                                <main class="col-2 col-md-4 col-sm-6 col-lg-2 form-signin">
+
+                                <!-- <main class="col-2 col-md-4 col-sm-6 col-lg-2 form-signin">
                                     <div>
                                         <h6 class=" text-center my-2">
-                                            <span class="text-light text-center">د ډیزل نړیوال نرخ</span>
+                                            <span class="text-light text-center">د تېلو نړیوال نرخ</span>
                                         </h6>
-                                        <form action="./daily_rates/diesel.php" method="POST" class="card p-1">
+                                        <form action="./daily_rates/oil.php" method="POST" class="card p-1">
                                             <div class="input-group">
-                                                <input type="number" name="diesel_rate" class="form-control" placeholder="-------" required>
+                                                <input type="number" name="oil_rate" class="form-control" placeholder="-------" required>
                                                 <button type="submit" class="btn btn-secondary">ثبتول</button>
                                             </div>
                                         </form>
@@ -247,7 +302,7 @@ $con->close();
                                                     ?>
 
                                                     <span style="position: absolute; top: 2; right: 0; cursor: pointer;">
-                                                        <a href="./daily_rates/remove_diesel.php?id=<?php echo $element[0] ?>">
+                                                        <a href="./daily_rates/remove_oil.php?id=<?php echo $element[0] ?>">
                                                             <svg fill="red" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
                                                             </svg>
@@ -259,55 +314,8 @@ $con->close();
                                             <?php } ?>
                                         </ul>
                                     </div>
-                                </main>
-<!-- Paterol -->
-                                <main class="form-signin col-sm-6 col-lg-2 col-md-4">
-                                    <div>
-                                        <h6 class=" text-center my-2">
-                                            <span class="text-light text-center">د پطرول نړیوال نرخ</span>
-                                        </h6>
-                                        <form action="./daily_rates/paterol.php" method="POST" class="card p-1">
-                                            <div class="input-group">
-                                                <input type="number" name="rate_paterol" class="form-control" placeholder="-------" required>
-                                                <button type="submit" class="btn btn-secondary">ثبتول</button>
-                                            </div>
-                                        </form>
-                                        <ul class="list-group mt-1">
-
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <span style="padding-right: 10px;">
-                                                    <strong>
-                                                        تاریخ
-                                                    </strong>
-                                                </span>
-                                                <strong>نرخ</strong>
-                                            </li>
-                                            <?php foreach ($data4 as $element) { ?>
-                                                <li class="list-group-item d-flex justify-content-between">
-                                                    <?php
-                                                    $date = $element[2];
-                                                    $date = explode(' ', $date);
-
-                                                    $dateString = $date[0];
-                                                    $dateFormatted = date("n/j/y", strtotime($dateString));
-
-
-                                                    ?>
-                                                    <span style="position: absolute; top: 2; right: 0; cursor: pointer;">
-                                                        <a href="./daily_rates/remove_paterol.php?id=<?php echo $element[0] ?>">
-                                                            <svg fill="red" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
-                                                            </svg>
-                                                        </a>
-                                                    </span>
-                                                    <span style="padding-right: 10px;"><?php echo $dateFormatted ?></span>
-                                                    <strong><?php echo $element[1] . '$' ?></strong>
-                                                </li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-                                </main>
-<!-- Gas -->
+                                </main> -->
+                                <!-- 
                                 <main class="form-signin col-md-4 col-sm-6 col-lg-2">
                                     <div>
                                         <h6 class=" text-center my-2">
@@ -350,7 +358,54 @@ $con->close();
                                         </ul>
                                     </div>
                                 </main>
-<!-- Custom -->
+
+                                <main class="form-signin col-sm-6 col-lg-2 col-md-4">
+                                    <div>
+                                        <h6 class=" text-center my-2">
+                                            <span class="text-light text-center">د کاندنسات نړیوال نرخ</span>
+                                        </h6>
+                                        <form action="./daily_rates/condensate.php" method="POST" class="card p-1">
+                                            <div class="input-group">
+                                                <input type="number" name="condensate_rate" class="form-control" placeholder="-------" required>
+                                                <button type="submit" class="btn btn-secondary">ثبتول</button>
+                                            </div>
+                                        </form>
+                                        <ul class="list-group mt-1">
+
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span style="padding-right: 10px;">
+                                                    <strong>
+                                                        تاریخ
+                                                    </strong>
+                                                </span>
+                                                <strong>نرخ</strong>
+                                            </li>
+                                            <?php foreach ($data4 as $element) { ?>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <?php
+                                                    $date = $element[2];
+                                                    $date = explode(' ', $date);
+
+                                                    $dateString = $date[0];
+                                                    $dateFormatted = date("n/j/y", strtotime($dateString));
+
+
+                                                    ?>
+                                                    <span style="position: absolute; top: 2; right: 0; cursor: pointer;">
+                                                        <a href="./daily_rates/remove_condensate.php?id=<?php echo $element[0] ?>">
+                                                            <svg fill="red" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
+                                                            </svg>
+                                                        </a>
+                                                    </span>
+                                                    <span style="padding-right: 10px;"><?php echo $dateFormatted ?></span>
+                                                    <strong><?php echo $element[1] . '$' ?></strong>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </main>
+
                                 <main class="form-signin col-sm-6 col-lg-2 col-md-4">
                                     <div>
                                         <h6 class=" text-center my-2">
@@ -398,6 +453,50 @@ $con->close();
                                         </ul>
                                     </div>
                                 </main>
+
+                                <main class="form-signin col-sm-6 col-lg-2 col-md-4">
+                                    <div>
+                                        <h6 class=" text-center my-2">
+                                            <span class="text-light text-center">۱۵ ورځنی قیمت</span>
+                                        </h6>
+                                        <form action="./daily_rates/service.php" method="POST" class="card p-1">
+                                            <div class="input-group">
+                                                <input type="number" name="service_rate" class="form-control" placeholder="-------" required>
+                                                <button type="submit" class="btn btn-secondary">ثبتول</button>
+                                            </div>
+                                        </form>
+                                        <ul class="list-group mt-1">
+
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span style="padding-right: 10px;">
+                                                    <strong>
+                                                        تاریخ
+                                                    </strong>
+                                                </span>
+                                                <strong>نرخ</strong>
+                                            </li>
+                                            <?php foreach ($data6 as $element) { ?>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <?php
+                                                    $date = $element[2];
+                                                    $date = explode(' ', $date);
+                                                    $dateString = $date[0];
+                                                    $dateFormatted = date("n/j/y", strtotime($dateString));
+                                                    ?>
+                                                    <span style="position: absolute; top: 2; right: 0; cursor: pointer;">
+                                                        <a href="./daily_rates/remove_service.php?id=<?php echo $element[0] ?>">
+                                                            <svg fill="red" width="20px" height="20px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" d="M0.425 0.2a0.025 0.025 0 0 1 0.025 0.025v0.25a0.075 0.075 0 0 1 -0.075 0.075H0.225a0.075 0.075 0 0 1 -0.075 -0.075V0.225a0.025 0.025 0 0 1 0.025 -0.025h0.25Zm-0.025 0.05H0.2v0.225a0.025 0.025 0 0 0 0.025 0.025h0.15a0.025 0.025 0 0 0 0.025 -0.025v-0.225ZM0.225 0.075a0.025 0.025 0 0 1 0.025 -0.025h0.1a0.025 0.025 0 0 1 0.025 0.025v0.025h0.1a0.025 0.025 0 0 1 0 0.05H0.125a0.025 0.025 0 1 1 0 -0.05h0.1V0.075Z" />
+                                                            </svg>
+                                                        </a>
+                                                    </span>
+                                                    <span style="padding-right: 10px;"><?php echo $dateFormatted ?></span>
+                                                    <strong><?php echo $element[1] . '$' ?></strong>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </main> -->
                             </div>
                         </div>
                     </div>

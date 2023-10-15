@@ -5,13 +5,12 @@
         <li class="bd-links-group py-2">
             <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold px-5">
                 <a href="./backend.php" style="text-decoration: none;">
-                    <svg fill="blue" width="35" height="35" viewBox="0 0 6.75 6.75" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <title>house-solid</title>
+                    <svg fill="blue" width="30" height="30" viewBox="0 0 6.75 6.75" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <path class="clr-i-solid clr-i-solid-path-1" d="M6.188 3.563a0.188 0.188 0 0 1 -0.133 -0.054L3.375 0.827 0.696 3.508A0.188 0.188 0 0 1 0.431 3.244l2.813 -2.813a0.188 0.188 0 0 1 0.264 0l2.813 2.813A0.188 0.188 0 0 1 6.188 3.563Z" />
                         <path class="clr-i-solid clr-i-solid-path-2" d="M3.375 1.461 1.125 3.718V6a0.375 0.375 0 0 0 0.375 0.375h1.313V4.5h1.125v1.875h1.313a0.375 0.375 0 0 0 0.375 -0.375V3.705Z" />
                         <path x="0" y="0" width="36" height="36" fill-opacity="0" d="M0 0H6.75V6.75H0V0z" />
                     </svg>
-                    <h4 class="mt-1" style="margin-right: 10px; display: inline">کورپاڼه</h4>
+                    <h4 style="margin-right: 4px; padding-top: 10px; display: inline">کورپاڼه</h4>
                 </a>
             </strong>
         </li>
@@ -203,17 +202,26 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                            <h6 class="px-1">ورځني نرخونه</h6>
+                            <h6 class="px-1">نرخونه</h6>
                         </button>
                     </h2>
                     <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="./../pages/daily_importance.php">
                                 <svg class="bi">
                                     <use xlink:href="#file-earmark-text" />
                                 </svg>
                                 ورځني نرخونه
+                            </a>
+                        </li>
+                    </div>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="./../pages/long_term_importance.php">
+                                <svg class="bi">
+                                    <use xlink:href="#file-earmark-text" />
+                                </svg>
+                                ژر نه تغیرېدونکي نرخونه
                             </a>
                         </li>
                     </div>
@@ -263,6 +271,14 @@
                                     <use xlink:href="#file-earmark-text" />
                                 </svg>
                                 کلنی راپور
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="./report_general.php">
+                                <svg class="bi">
+                                    <use xlink:href="#file-earmark-text" />
+                                </svg>
+                                عمومي راپور
                             </a>
                         </li>
                     </div>
